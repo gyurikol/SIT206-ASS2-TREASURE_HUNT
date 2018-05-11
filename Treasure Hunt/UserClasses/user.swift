@@ -11,11 +11,13 @@ import Foundation
 // user class that acts as identity of device user
 class User {
     // Properties
-    var person: PersonDetails
+    var person : PersonDetails
+    var treasure : [Treasure]       // Treasures associated with the user
     
     // Initializer
-    init( details: PersonDetails )
+    init( details: PersonDetails, treasures: [Treasure] )
     {
         self.person = details       // set person details
+        self.treasure = treasures   // set treasures associated to user
     }
 }
