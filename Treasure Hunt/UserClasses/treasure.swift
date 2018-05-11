@@ -14,4 +14,5 @@ struct Treasure {
     //Type
     //Location
     //Content
+    
 }
