@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A4AEB0220A573F800A940B6 /* FriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AEB0120A573F800A940B6 /* FriendVC.swift */; };
+		3A4AEB0420A5744F00A940B6 /* TreasureResourceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AEB0320A5744F00A940B6 /* TreasureResourceVC.swift */; };
+		3A4AEB0620A574A000A940B6 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AEB0520A574A000A940B6 /* SettingsVC.swift */; };
 		3A5410CD20A5394D002D612D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5410CC20A5394D002D612D /* AppDelegate.swift */; };
 		3A5410CF20A5394D002D612D /* MainMenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5410CE20A5394D002D612D /* MainMenuVC.swift */; };
 		3A5410D220A5394D002D612D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A5410D020A5394D002D612D /* Main.storyboard */; };
@@ -17,6 +20,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A4AEB0120A573F800A940B6 /* FriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendVC.swift; sourceTree = "<group>"; };
+		3A4AEB0320A5744F00A940B6 /* TreasureResourceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreasureResourceVC.swift; sourceTree = "<group>"; };
+		3A4AEB0520A574A000A940B6 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		3A5410C920A5394D002D612D /* Treasure Hunt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Treasure Hunt.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A5410CC20A5394D002D612D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3A5410CE20A5394D002D612D /* MainMenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuVC.swift; sourceTree = "<group>"; };
@@ -61,6 +67,9 @@
 				3A5410CC20A5394D002D612D /* AppDelegate.swift */,
 				3A5410CE20A5394D002D612D /* MainMenuVC.swift */,
 				3A5410D020A5394D002D612D /* Main.storyboard */,
+				3A4AEB0520A574A000A940B6 /* SettingsVC.swift */,
+				3A4AEB0320A5744F00A940B6 /* TreasureResourceVC.swift */,
+				3A4AEB0120A573F800A940B6 /* FriendVC.swift */,
 				3A5410E120A53E31002D612D /* TreasureMapVC.swift */,
 				3A5410D620A5394F002D612D /* Assets.xcassets */,
 				3A5410D820A5394F002D612D /* LaunchScreen.storyboard */,
@@ -142,9 +151,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3A5410E220A53E31002D612D /* TreasureMapVC.swift in Sources */,
+				3A4AEB0220A573F800A940B6 /* FriendVC.swift in Sources */,
 				3A5410D520A5394D002D612D /* Treasure_Hunt.xcdatamodeld in Sources */,
 				3A5410CF20A5394D002D612D /* MainMenuVC.swift in Sources */,
 				3A5410CD20A5394D002D612D /* AppDelegate.swift in Sources */,
+				3A4AEB0420A5744F00A940B6 /* TreasureResourceVC.swift in Sources */,
+				3A4AEB0620A574A000A940B6 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
