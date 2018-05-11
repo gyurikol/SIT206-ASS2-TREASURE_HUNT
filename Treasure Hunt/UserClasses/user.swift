@@ -12,12 +12,12 @@ import Foundation
 class User {
     // Properties
     var person : PersonDetails
-    var treasure : [Treasure]       // Treasures associated with the user
+    var treasure : [Treasure]?          // Treasures associated with the user
+    var friends : [User]?               // Other Users associated with current device user
     
     // Initializer
-    init( details: PersonDetails, treasures: [Treasure] )
+    init( details: PersonDetails )
     {
-        self.person = details       // set person details
-        self.treasure = treasures   // set treasures associated to user
+        self.person = details           // set person details
     }
 }
