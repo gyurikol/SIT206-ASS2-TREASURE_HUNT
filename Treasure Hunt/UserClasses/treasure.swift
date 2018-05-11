@@ -9,6 +9,6 @@
 import Foundation
 
 // Treasure class that acts as the individual loaded resource of a user
-class Treasure {
+struct Treasure {
     
 }
