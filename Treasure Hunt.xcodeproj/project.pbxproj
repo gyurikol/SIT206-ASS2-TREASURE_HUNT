@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3A31CB1D20A9524700AC4CB0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A31CB1C20A9524700AC4CB0 /* CoreData.framework */; };
 		3A4AEB0220A573F800A940B6 /* FriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AEB0120A573F800A940B6 /* FriendVC.swift */; };
 		3A4AEB0420A5744F00A940B6 /* TreasureResourceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AEB0320A5744F00A940B6 /* TreasureResourceVC.swift */; };
 		3A4AEB0620A574A000A940B6 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AEB0520A574A000A940B6 /* SettingsVC.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3A31CB1C20A9524700AC4CB0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3A4AEB0120A573F800A940B6 /* FriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendVC.swift; sourceTree = "<group>"; };
 		3A4AEB0320A5744F00A940B6 /* TreasureResourceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreasureResourceVC.swift; sourceTree = "<group>"; };
 		3A4AEB0520A574A000A940B6 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
@@ -45,12 +47,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A31CB1D20A9524700AC4CB0 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A31CB1B20A9524700AC4CB0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3A31CB1C20A9524700AC4CB0 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3A4AEB0720A5772800A940B6 /* UserClasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +89,7 @@
 			children = (
 				3A5410CB20A5394D002D612D /* Treasure Hunt */,
 				3A5410CA20A5394D002D612D /* Products */,
+				3A31CB1B20A9524700AC4CB0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
