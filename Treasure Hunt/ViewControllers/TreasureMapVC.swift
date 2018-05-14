@@ -15,14 +15,45 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     // Outlets
     @IBOutlet weak var treasureMap: MKMapView!      // UI for map
     
+    // Variables
+    let locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // ViewController and Map Load Config
         treasureMap.delegate = self
         treasureMap.showsUserLocation = true
+        
+        // TESTING - Add Custom Default User for startup
+        let loadUser = User(
+            details: PersonDetails(
+                uid: "0",
+                username: "tester"
+            )
+        )
+        treasureMap.addAnnotation( Treasure( Content: "testing 1 2 3" ) ) // test map annotation
     }
-
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let annotationId = "viewForAnnotation"
+        var annotationView = treasureMap.dequeueReusableAnnotationView(withIdentifier: annotationId)
+        if ((annotation as? Treasure) != nil) {
+            if annotationView == nil {
+                annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationId)
+                annotationView?.image = (annotation as? Treasure)?.img
+                annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+                annotationView?.canShowCallout = true
+            }
+            else { annotationView?.annotation = annotation }
+        }
+        return annotationView
+    }
+    
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        print("mapview something happened")
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

@@ -12,7 +12,7 @@ import Foundation
 class User {
     // Properties
     var person : PersonDetails
-    var treasure : [Treasure]?          // Treasures associated with the user
+    var treasures : [Treasure]?          // Treasures associated with the user
     var friends : [User]?               // Other Users associated with current device user
     
     // Initializer

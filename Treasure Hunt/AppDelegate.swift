@@ -16,15 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
-        // Add Custom Default User for startup
-        var defaultUser = User(
-            details: PersonDetails(
-                uid: "0",
-                username: "tester"
-            )
-        )
-        
         return true
     }
 
