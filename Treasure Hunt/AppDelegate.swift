@@ -11,11 +11,23 @@ import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
+    
+    // TESTING - Add Custom Default User for startup
+    var currentUser = User(
+        details: PersonDetails(
+            uid: "0",
+            username: "tester"
+        )
+    )
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // TESTING - Add Custom Default User for startup
+        currentUser.treasures?.append( Treasure( Content: "testing 1 2 3" ) )
+        
         return true
     }
 
