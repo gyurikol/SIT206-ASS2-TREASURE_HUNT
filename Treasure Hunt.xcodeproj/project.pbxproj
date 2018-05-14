@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3A31CB1D20A9524700AC4CB0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A31CB1C20A9524700AC4CB0 /* CoreData.framework */; };
 		3A31CB1F20A95AB500AC4CB0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A31CB1E20A95AB500AC4CB0 /* MapKit.framework */; };
+		3A31CB2120A98D4F00AC4CB0 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A31CB2020A98D4F00AC4CB0 /* MainTabBarController.swift */; };
 		3A4AEB0220A573F800A940B6 /* FriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AEB0120A573F800A940B6 /* FriendVC.swift */; };
 		3A4AEB0420A5744F00A940B6 /* TreasureResourceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AEB0320A5744F00A940B6 /* TreasureResourceVC.swift */; };
 		3A4AEB0620A574A000A940B6 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AEB0520A574A000A940B6 /* SettingsVC.swift */; };
@@ -27,6 +28,7 @@
 /* Begin PBXFileReference section */
 		3A31CB1C20A9524700AC4CB0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3A31CB1E20A95AB500AC4CB0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		3A31CB2020A98D4F00AC4CB0 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3A4AEB0120A573F800A940B6 /* FriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendVC.swift; sourceTree = "<group>"; };
 		3A4AEB0320A5744F00A940B6 /* TreasureResourceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreasureResourceVC.swift; sourceTree = "<group>"; };
 		3A4AEB0520A574A000A940B6 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				3A4AEB0320A5744F00A940B6 /* TreasureResourceVC.swift */,
 				3A4AEB0120A573F800A940B6 /* FriendVC.swift */,
 				3A5410E120A53E31002D612D /* TreasureMapVC.swift */,
+				3A31CB2020A98D4F00AC4CB0 /* MainTabBarController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 			files = (
 				3A5410E220A53E31002D612D /* TreasureMapVC.swift in Sources */,
 				3A4AEB0220A573F800A940B6 /* FriendVC.swift in Sources */,
+				3A31CB2120A98D4F00AC4CB0 /* MainTabBarController.swift in Sources */,
 				3A5410D520A5394D002D612D /* Treasure_Hunt.xcdatamodeld in Sources */,
 				3A5410CF20A5394D002D612D /* MainMenuVC.swift in Sources */,
 				3AC47E6320A57A3800F2FF93 /* treasure.swift in Sources */,
