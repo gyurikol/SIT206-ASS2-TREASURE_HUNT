@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="W50-Xn-uVl">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W50-Xn-uVl">
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </mapView>
@@ -27,6 +27,9 @@
                         <viewLayoutGuide key="safeArea" id="BMG-fp-8Bx"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Treasure Map" id="dKI-CW-0tx"/>
+                    <connections>
+                        <outlet property="mapTreasure" destination="W50-Xn-uVl" id="Lqk-jd-lEs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFG-xg-zmw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
