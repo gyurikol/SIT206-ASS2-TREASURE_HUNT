@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import MapKit           // map ui module
+import CoreLocation     // user location module
 
-class TreasureMapVC: UIViewController {
-
+class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+    
+    // Outlets
+    @IBOutlet weak var mapTreasure: MKMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
