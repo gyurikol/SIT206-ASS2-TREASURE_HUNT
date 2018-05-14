@@ -16,6 +16,7 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     @IBOutlet weak var treasureMap: MKMapView!      // UI for map
     
     // Variables
+    var currentUser: User!
     let locationManager = CLLocationManager()
     
     override func viewDidLoad() {
@@ -25,14 +26,14 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         treasureMap.delegate = self
         treasureMap.showsUserLocation = true
         
-        // TESTING - Add Custom Default User for startup
-        let loadUser = User(
-            details: PersonDetails(
-                uid: "0",
-                username: "tester"
-            )
-        )
-        treasureMap.addAnnotation( Treasure( Content: "testing 1 2 3" ) ) // test map annotation
+        // get currentUser from app delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        currentUser = appDelegate.currentUser
+        
+        // annotate treasures from currentUser
+        for res in currentUser.treasures! {
+            treasureMap.addAnnotation( res ) // test map annotation
+        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
