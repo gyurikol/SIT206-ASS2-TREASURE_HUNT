@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3A31CB1D20A9524700AC4CB0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A31CB1C20A9524700AC4CB0 /* CoreData.framework */; };
+		3A31CB1F20A95AB500AC4CB0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A31CB1E20A95AB500AC4CB0 /* MapKit.framework */; };
 		3A4AEB0220A573F800A940B6 /* FriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AEB0120A573F800A940B6 /* FriendVC.swift */; };
 		3A4AEB0420A5744F00A940B6 /* TreasureResourceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AEB0320A5744F00A940B6 /* TreasureResourceVC.swift */; };
 		3A4AEB0620A574A000A940B6 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AEB0520A574A000A940B6 /* SettingsVC.swift */; };
@@ -25,6 +26,7 @@
 
 /* Begin PBXFileReference section */
 		3A31CB1C20A9524700AC4CB0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3A31CB1E20A95AB500AC4CB0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3A4AEB0120A573F800A940B6 /* FriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendVC.swift; sourceTree = "<group>"; };
 		3A4AEB0320A5744F00A940B6 /* TreasureResourceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreasureResourceVC.swift; sourceTree = "<group>"; };
 		3A4AEB0520A574A000A940B6 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
@@ -47,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A31CB1F20A95AB500AC4CB0 /* MapKit.framework in Frameworks */,
 				3A31CB1D20A9524700AC4CB0 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -57,6 +60,7 @@
 		3A31CB1B20A9524700AC4CB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3A31CB1E20A95AB500AC4CB0 /* MapKit.framework */,
 				3A31CB1C20A9524700AC4CB0 /* CoreData.framework */,
 			);
 			name = Frameworks;
@@ -148,6 +152,11 @@
 				TargetAttributes = {
 					3A5410C820A5394D002D612D = {
 						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
