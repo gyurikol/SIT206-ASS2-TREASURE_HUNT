@@ -13,7 +13,7 @@
         <!--Treasure Map-->
         <scene sceneID="uOY-G3-Bhz">
             <objects>
-                <viewController title="Treasure Map" id="rrt-3z-bjs" customClass="TreasureMapVC" customModule="Treasure_Hunt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="treasuremap" title="Treasure Map" id="rrt-3z-bjs" customClass="TreasureMapVC" customModule="Treasure_Hunt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="QWq-RY-AWH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -52,10 +52,10 @@
             </objects>
             <point key="canvasLocation" x="82" y="-1120"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="Rm0-Hz-gf1">
             <objects>
-                <tabBarController id="VUL-xF-STn" sceneMemberID="viewController">
+                <tabBarController id="VUL-xF-STn" customClass="MainTabBarController" customModule="Treasure_Hunt" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Kgv-X6-vez">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
