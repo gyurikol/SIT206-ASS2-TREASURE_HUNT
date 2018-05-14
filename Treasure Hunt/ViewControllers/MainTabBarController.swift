@@ -13,6 +13,12 @@ class MainTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        // get currentUser from app delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        // TESTING - Add Custom Default User for startup
+        appDelegate.currentUser.treasures.append( Treasure( Content: "testing 1 2 3" ) )
     }
 
     override func didReceiveMemoryWarning() {
