@@ -11,6 +11,6 @@ import Foundation
 // person structure acts as identity of person (user/friend)
 struct PersonDetails {
     // Properties
-    private var uid : String        // user identity
+    var uid : String        // user identity
     var username : String           // user name
 }
