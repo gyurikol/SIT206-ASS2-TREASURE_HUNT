@@ -13,7 +13,7 @@ import CoreLocation     // user location module
 class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     // Outlets
-    @IBOutlet weak var mapTreasure: MKMapView!
+    @IBOutlet weak var mapTreasure: MKMapView!      // UI for map
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +25,6 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     /*
     // MARK: - Navigation
@@ -36,5 +35,15 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // func to load and annotate treasure resources to the map
+    func loadTreasures() -> Void {
+        // Load all friends treasures to map
+        
+    }
+    func loadTreasures(user: User) -> Void {
+        // Load all specific users treasures to map
+        
+    }
 
 }
