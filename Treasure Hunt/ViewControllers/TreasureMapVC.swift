@@ -31,7 +31,7 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         currentUser = appDelegate.currentUser
         
         // annotate treasures from currentUser
-        for res in currentUser.treasures! {
+        for res in currentUser.treasures {
             treasureMap.addAnnotation( res ) // test map annotation
         }
     }
