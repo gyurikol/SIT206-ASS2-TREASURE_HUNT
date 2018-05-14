@@ -18,8 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         // Add Custom Default User for startup
-        let defaultPerson = PersonDetails(uid: "0", username: "tester")
-        var defaultUser = User(details: defaultPerson)
+        var defaultUser = User(
+            details: PersonDetails(
+                uid: "0",
+                username: "tester"
+            )
+        )
         
         return true
     }
