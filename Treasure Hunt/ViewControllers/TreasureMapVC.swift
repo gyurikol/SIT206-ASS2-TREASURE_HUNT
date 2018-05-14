@@ -13,12 +13,14 @@ import CoreLocation     // user location module
 class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     // Outlets
-    @IBOutlet weak var mapTreasure: MKMapView!      // UI for map
+    @IBOutlet weak var treasureMap: MKMapView!      // UI for map
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        // ViewController and Map Load Config
+        treasureMap.delegate = self
+        treasureMap.showsUserLocation = true
     }
 
     override func didReceiveMemoryWarning() {
