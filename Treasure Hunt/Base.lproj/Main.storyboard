@@ -28,7 +28,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Treasure Map" id="dKI-CW-0tx"/>
                     <connections>
-                        <outlet property="mapTreasure" destination="W50-Xn-uVl" id="Lqk-jd-lEs"/>
+                        <outlet property="treasureMap" destination="W50-Xn-uVl" id="g4O-J2-qQY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFG-xg-zmw" userLabel="First Responder" sceneMemberID="firstResponder"/>
