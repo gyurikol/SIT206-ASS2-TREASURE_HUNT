@@ -22,6 +22,10 @@ class MainTabBarController: UITabBarController {
         appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "a", UserName: "zOren", FirstName: "Zachery", Surname: "Orenstein", eMail: "testa@test.com") ) )
         appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "b", UserName: "poopmaster", FirstName: "Sherill", Surname: "Elia", eMail: "testb@test.com") ) )
         appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "c", UserName: "leLOL", FirstName: "Hilario", Surname: "Legrand", eMail: "testc@test.com") ) )
+        
+        appDelegate.currentUser.friends[0].treasures.append( Treasure(Content: "Perth", Destination: "Perth" ) )
+        appDelegate.currentUser.friends[1].treasures.append( Treasure(Content: "Darwin", Destination: "Darwin" ) )
+        appDelegate.currentUser.friends[2].treasures.append( Treasure(Content: "Brisbane", Destination: "Brisbane" ) )
     }
 
     override func didReceiveMemoryWarning() {
