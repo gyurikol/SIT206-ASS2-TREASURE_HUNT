@@ -8,12 +8,56 @@
 
 import UIKit
 
+// Class where the table view will unpack the list of user sent and display appropriate sections and cells for the user and treasures
 class TreasureResourceVC: UITableViewController {
+    
+    var userList: [User] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    // set sections in table view dependant on user count
+    override func numberOfSections(in tableView: UITableView) -> Int { return userList.count }
+    
+    // set table row count dependant on number of treasures in user
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return userList[section].treasures.count
+    }
+    
+    // set header for section
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        if(userList[section].person == appDelegate.currentUser.person) { return "Your Treasures" }
+        else
+        { return "\(userList[section].person.username) Treasures" }
+    }
+    
+    // set cell definition and table population properties
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // get next usable cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "treasureCell", for: indexPath)
+        
+        // get treasure from index path of section and row
+        let treasure = userList[indexPath.section].treasures[indexPath.row]
+        
+        // set text label to treasure ????????
+        cell.textLabel?.text = treasure.content
+        
+        // set cell detail label to treasure ????????
+        cell.detailTextLabel?.text = treasure.content
+        
+        // set display image to treasure assigned image
+        cell.imageView?.image = treasure.img
+        
+        // show disclosure indicator in row cell
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+        
+        return cell
     }
 
     override func didReceiveMemoryWarning() {
