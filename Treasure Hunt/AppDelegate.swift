@@ -17,8 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // TESTING - Add Custom Default User for startup
     var currentUser = User(
         details: PersonDetails(
-            uid: "0",
-            username: "tester"
+            UserID: "1",
+            UserName: "tester",
+            FirstName: "John",
+            Surname: "Smith",
+            eMail:"test@test.com"
         )
     )
 
