@@ -13,7 +13,7 @@ class User {
     // Properties
     var person : PersonDetails
     var treasures : [Treasure] = []     // Treasures associated with the user
-    var friends : [User]?               // Other Users associated with current device user
+    var friends : [User] = []           // Other Users associated with current device user
     
     // Initializer
     init( details: PersonDetails )
