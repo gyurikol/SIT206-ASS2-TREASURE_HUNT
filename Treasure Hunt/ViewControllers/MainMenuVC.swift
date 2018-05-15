@@ -27,13 +27,18 @@ class MainMenuVC: UIViewController {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
+        // reference app delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        // handle segue destinations
         if segue.destination is FriendVC
         {
             // to friend view controller
-            print("segue to friendvc")
         } else if segue.destination is TreasureResourceVC
         {
             // to treasure resource view controller
+            let vc = segue.destination as? TreasureResourceVC
+            vc?.userList = appDelegate.currentUser.friends
         }
     }
 
