@@ -19,9 +19,9 @@ class MainTabBarController: UITabBarController {
         
         // TESTING - Add Custom Default User for startup
         appDelegate.currentUser.treasures.append( Treasure(Content: "testing 1 2 3", Destination: "Melbourne" ) )
-        appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "a", UserName: "testa", FirstName: "testa", Surname: "testa", eMail: "testa@test.com") ) )
-        appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "b", UserName: "testb", FirstName: "testb", Surname: "testb", eMail: "testb@test.com") ) )
-        appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "c", UserName: "testc", FirstName: "testc", Surname: "testc", eMail: "testc@test.com") ) )
+        appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "a", UserName: "zOren", FirstName: "Zachery", Surname: "Orenstein", eMail: "testa@test.com") ) )
+        appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "b", UserName: "poopmaster", FirstName: "Sherill", Surname: "Elia", eMail: "testb@test.com") ) )
+        appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "c", UserName: "leLOL", FirstName: "Hilario", Surname: "Legrand", eMail: "testc@test.com") ) )
     }
 
     override func didReceiveMemoryWarning() {
