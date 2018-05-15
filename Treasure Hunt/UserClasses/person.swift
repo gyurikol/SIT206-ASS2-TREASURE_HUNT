@@ -33,3 +33,15 @@ class PersonDetails {
         email = eMail
     }
 }
+
+// allow PersonDetails to be equatable
+extension PersonDetails: Equatable {
+    static func == (lhs: PersonDetails, rhs: PersonDetails) -> Bool {
+        return
+            lhs.uid         == rhs.uid          &&
+            lhs.username    == rhs.username     &&
+            lhs.firstname   == rhs.firstname    &&
+            lhs.surname     == rhs.surname      &&
+            lhs.email       == rhs.email
+    }
+}
