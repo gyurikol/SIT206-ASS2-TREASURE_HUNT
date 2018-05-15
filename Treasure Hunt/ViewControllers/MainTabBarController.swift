@@ -18,7 +18,10 @@ class MainTabBarController: UITabBarController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         // TESTING - Add Custom Default User for startup
-        appDelegate.currentUser.treasures.append( Treasure( Content: "testing 1 2 3" ) )
+        appDelegate.currentUser.treasures.append( Treasure(Content: "testing 1 2 3", Destination: "Melbourne" ) )
+        appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "a", UserName: "testa", FirstName: "testa", Surname: "testa", eMail: "testa@test.com") ) )
+        appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "b", UserName: "testb", FirstName: "testb", Surname: "testb", eMail: "testb@test.com") ) )
+        appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "c", UserName: "testc", FirstName: "testc", Surname: "testc", eMail: "testc@test.com") ) )
     }
 
     override func didReceiveMemoryWarning() {
