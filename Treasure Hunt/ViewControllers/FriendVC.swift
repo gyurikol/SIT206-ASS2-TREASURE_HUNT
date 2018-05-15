@@ -46,6 +46,10 @@ class FriendVC: UITableViewController {
         
         // set no display image for friend user
         cell.imageView?.image = UIImage(named: "no-img-S")
+        
+        // show disclosure indicator in row cell
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
+        
         return cell
     }
 
