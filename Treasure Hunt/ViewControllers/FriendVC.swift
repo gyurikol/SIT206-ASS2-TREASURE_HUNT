@@ -10,10 +10,16 @@ import UIKit
 
 class FriendVC: UITableViewController {
 
+    var friendList: [User]?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // set currentUser friendlist from app delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        friendList = appDelegate.currentUser.friends
     }
 
     override func didReceiveMemoryWarning() {
