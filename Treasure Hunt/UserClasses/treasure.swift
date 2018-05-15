@@ -18,27 +18,37 @@ class Treasure: NSObject, MKAnnotation {
     var title : String?
     var subTitle : String?
     var date: String?
+                                                // --- end of optionals
     var img: UIImage = UIImage(named: "tc-S")!
     var coordinate : CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     //Type - for content selection
-    var content: String     // test content as string first
+    var content: String                         // test content as string first
     
     // Treasure initializer
     init( Content : String )
     {
         content = Content
+        super.init()                            // super init to be able to access class operators
         
-        super.init()
-        
-        date = getDate()   // set treasure date
+        date = getDate()                        // set treasure date
         updateTripData()
     }
+    init( Content : String, Destination: String )
+    {
+        content = Content
+        super.init()                            // super init to be able to access class operators
+        
+        date = getDate()                        // set treasure date
+        //updateTripData()
+        getLocationFromDestination(destination: Destination)
+    }
     
-    func updateTripData() {
+    func updateTripData() {                     // update the rest of treasure properties
         title = "Random Title"
         subTitle = date
         getLocationFromDestination()
     }
+    
     func getLocationFromDestination() {
         CLGeocoder().geocodeAddressString("Melbourne") {
             (placemarks, error) in
@@ -47,13 +57,23 @@ class Treasure: NSObject, MKAnnotation {
         }
     }
     
+    // get location from string destination
+    func getLocationFromDestination( destination: String ) {
+        // typealias CLGeocodeCompletionHandler = ([CLPlacemark]?, Error?) -> Void
+        CLGeocoder().geocodeAddressString( destination ) {
+            (placemarks, error) in
+            let placemark = placemarks?.first
+            self.coordinate = (placemark?.location?.coordinate)!
+        }
+    }
+    
     // get date as string
     func getDate() -> String {
-        let date = Date()                   // set date
-        let formatter = DateFormatter()     // set formatter
+        let date = Date()                       // set date
+        let formatter = DateFormatter()         // set formatter
         
-        formatter.dateFormat = "dd.MM.yyyy" // set date format
+        formatter.dateFormat = "dd/MM/yyyy"     // set date format
         
-        return formatter.string(from: date) // return date string
+        return formatter.string(from: date)     // return date string
     }
 }
