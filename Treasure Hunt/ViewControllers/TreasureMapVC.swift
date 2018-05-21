@@ -17,14 +17,13 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     // Variables
     var currentUser: User!
-    var locationManager = LocationService.shared
+    var locationManager = CLLocationManager.init()      // initialize location manager
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // ViewController and Map Load Config
         treasureMap.delegate = self
-        treasureMap.showsUserLocation = true
         
         // get currentUser from app delegate
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -35,50 +34,54 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             treasureMap.addAnnotation( res ) // test map annotation
         }
         
-        // Location manager configuration
-//        locationManager.delegate = self
-//        locationManager.desiredAccuracy = kCLLocationAccuracyBest
-//        locationManager.requestWhenInUseAuthorization()
-//        locationManager.startUpdatingLocation()
-        
+        // perform view load tasks for user location
+        userLocationLoadTasks()
+    }
+    
+    func userLocationLoadTasks() {
+        // if location services enabled then reset location manager
         if (CLLocationManager.locationServicesEnabled()) {
-            locationManager = LocationService.shared
-            //locationManager = CLLocationManager()
-            //locationManager.delegate = self
-            //locationManager.desiredAccuracy = kCLLocationAccuracyBest
-            //locationManager.requestAlwaysAuthorization()
-            //locationManager.requestWhenInUseAuthorization()
+            locationManager = CLLocationManager()
         }
-        //locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled() {
-            //locationManager.startUpdatingLocation()
-        }
-        //Zoom to user location
+        
+        // location manager configuration
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        
+        // zoom to user location
         let noLocation = CLLocationCoordinate2D()
         let viewRegion = MKCoordinateRegionMakeWithDistance(noLocation, 10000000, 10000000)
         treasureMap.setRegion(viewRegion, animated: false)
         
+        // dispatch the update of location tasks to main thread
         DispatchQueue.main.async {
-            //self.locationManager.startUpdatingLocation()
+            self.locationManager.startUpdatingLocation()
         }
     }
     
-    // location change handler
+    // location manager location change handler
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.first
+        let location = locations.first  // get first location
         
+        // prepare coording and view region for Map UI
         let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         let myLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
         let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
+        
+        // set region to the treasure map
         treasureMap.setRegion(region, animated: true)
         
+        // print pointless test information
         print(location?.altitude as Any)
         print(location?.speed as Any)
         
+        // re set show user location property
         self.treasureMap.showsUserLocation = true
     }
     
-    // annotate
+    // annotate treasure list handed to view controller
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let annotationId = "viewForAnnotation"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationId)
@@ -118,37 +121,6 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         // Pass the selected object to the new view controller.
     }
     */
-
-}
-
-class LocationService : NSObject, CLLocationManagerDelegate {
-    var locationManager = CLLocationManager.init()
-    static let shared: LocationService = LocationService()
-    
-    override private init() {
-        super.init()
-        //locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.desiredAccuracy = 100 // meters
-        locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.startUpdatingLocation()
-    }
-    
-    // location manager location change handler
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let location = locations.first
-        
-        let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-        let myLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
-        let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
-        treasureMap.setRegion(region, animated: true)
-        
-        print(location?.altitude as Any)
-        print(location?.speed as Any)
-        
-        self.treasureMap.showsUserLocation = true
-    }
     
     // location manager error handling
     private func locationManager(_ manager: CLLocationManager, didFailWithError error: NSError) {
