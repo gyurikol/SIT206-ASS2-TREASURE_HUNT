@@ -18,15 +18,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W50-Xn-uVl">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" zoomEnabled="NO" pitchEnabled="NO" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W50-Xn-uVl">
                                 <rect key="frame" x="0.0" y="20" width="375" height="598"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ugl-DK-pus">
+                                <rect key="frame" x="311" y="29" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="bury-treasure"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="BMG-fp-8Bx"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Treasure Map" id="dKI-CW-0tx"/>
+                    <tabBarItem key="tabBarItem" title="Treasure Map" image="tm-25" id="dKI-CW-0tx"/>
                     <connections>
                         <outlet property="treasureMap" destination="W50-Xn-uVl" id="g4O-J2-qQY"/>
                     </connections>
@@ -39,7 +44,7 @@
         <scene sceneID="Xyi-sK-ONa">
             <objects>
                 <navigationController id="TGe-FO-2sT" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Menu" id="MXS-CM-RQe"/>
+                    <tabBarItem key="tabBarItem" title="Menu" image="menu-25" id="MXS-CM-RQe"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nmi-YG-jro">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -217,4 +222,9 @@
             <point key="canvasLocation" x="1809" y="-351"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="bury-treasure" width="50" height="50"/>
+        <image name="menu-25" width="25" height="25"/>
+        <image name="tm-25" width="25" height="25"/>
+    </resources>
 </document>

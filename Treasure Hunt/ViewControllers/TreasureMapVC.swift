@@ -18,6 +18,7 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     // Variables
     var currentUser: User!
     var locationManager = CLLocationManager.init()      // initialize location manager
+    var userCurrentLocation : CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,8 +48,8 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         // location manager configuration
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
-        locationManager.requestAlwaysAuthorization()
         locationManager.requestWhenInUseAuthorization()
+        locationManager.requestAlwaysAuthorization()
         
         // zoom to user location
         let noLocation = CLLocationCoordinate2D()
@@ -65,8 +66,12 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations.first  // get first location
         
+        // set class level user current location
+        userCurrentLocation = (location?.coordinate)!
+        
         // prepare coording and view region for Map UI
-        let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        //let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.11, longitudeDelta: 0.11)
         let myLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
         let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
         
@@ -85,6 +90,21 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let annotationId = "viewForAnnotation"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationId)
+        
+        /*
+        // if annotation is user location
+        if annotation is MKUserLocation {
+            let userLoc = MKAnnotationView(annotation: annotation, reuseIdentifier: "userLocation")
+            let buryButton = UIButton(type: .custom)
+            buryButton.setImage(UIImage(named: "bury-treasure"), for: .normal)
+            userLoc.detailCalloutAccessoryView = buryButton
+            return userLoc
+        }
+        */
+        if let ulav = mapView.view(for: annotation) {
+            ulav.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+        }
+        
         if ((annotation as? Treasure) != nil) {
             if annotationView == nil {
                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationId)
@@ -137,11 +157,10 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             locationManager.stopUpdatingLocation()
         }
         
+        // just print error message
         print(errorMessage)
     }
 }
-
-
 
 
 
