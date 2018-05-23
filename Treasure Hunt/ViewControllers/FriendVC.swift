@@ -24,9 +24,9 @@ class FriendVC: UITableViewController {
         friendList = appDelegate.currentUser.friends
         
         // construct treasure map annotations based on friends list
-        appDelegate.treasureAnnotationFocus = []
+        appDelegate.userAnnotationsFocus = []
         for friend in appDelegate.currentUser.friends {
-            appDelegate.treasureAnnotationFocus.append( friend )
+            appDelegate.userAnnotationsFocus.append( friend )
         }
     }
     
