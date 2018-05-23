@@ -91,8 +91,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EPH-0P-EYR">
-                                <rect key="frame" x="150" y="572" width="75" height="75"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <rect key="frame" x="309" y="597" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <state key="normal" image="tm-75"/>
                                 <connections>
                                     <segue destination="rrt-3z-bjs" kind="show" id="DbH-vb-bxE"/>
@@ -149,8 +149,8 @@
                                 </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MfC-ND-FCj">
-                                <rect key="frame" x="16" y="572" width="343" height="75"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <rect key="frame" x="309" y="597" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <state key="normal" image="tm-75"/>
                                 <connections>
                                     <segue destination="rrt-3z-bjs" kind="show" id="aY8-bi-gyD"/>
@@ -217,6 +217,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aj-WE-tfL">
+                                <rect key="frame" x="309" y="164" width="50" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="tm-75"/>
+                                <connections>
+                                    <action selector="openFriendTreasureMap:" destination="Fm8-pH-MAj" eventType="touchUpInside" id="GEy-il-G2Y"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="zaf-cm-yTh"/>
@@ -258,6 +266,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="uCp-Um-JGC"/>
-        <segue reference="aY8-bi-gyD"/>
+        <segue reference="Wy6-nM-Qa1"/>
     </inferredMetricsTieBreakers>
 </document>
