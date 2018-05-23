@@ -8,8 +8,10 @@
 
 import UIKit
 
-class FriendVC: UITableViewController {
-
+class FriendVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    // outlets
+    @IBOutlet weak var friendTable: UITableView!
+    
     var friendList: [User] = []
     
     var selectedFriend: User?
@@ -17,13 +19,20 @@ class FriendVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        // set friend table
+        friendTable.delegate = self
+        friendTable.dataSource = self
         
         // set currentUser friendlist from app delegate
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         friendList = appDelegate.currentUser.friends
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        // reference app delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        // construct treasure map annotations based on friends list
+        // construct default treasure map annotation focus
         appDelegate.userAnnotationsFocus = []
         for friend in appDelegate.currentUser.friends {
             appDelegate.userAnnotationsFocus.append( friend )
@@ -31,15 +40,15 @@ class FriendVC: UITableViewController {
     }
     
     // set sections in table view to singular
-    override func numberOfSections(in tableView: UITableView) -> Int { return 1 }
+    func numberOfSections(in tableView: UITableView) -> Int { return 1 }
     
     // set table row count dependant on number of friends
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return friendList.count
     }
     
     // set cell definition and table population properties
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // get next usable cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "friendCell", for: indexPath)
         
@@ -65,7 +74,7 @@ class FriendVC: UITableViewController {
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // set selected friend to specified friend in list
         selectedFriend = friendList[indexPath.row]
         self.performSegue(withIdentifier: "showFriendProfile", sender: self)
