@@ -28,6 +28,11 @@ class MainMenuVC: UIViewController {
             appDelegate.currentUser.friends[1].treasures.append( Treasure(identifier: "2", Content: "Darwin", Destination: "Darwin" ) )
             appDelegate.currentUser.friends[2].treasures.append( Treasure(identifier: "3", Content: "Brisbane", Destination: "Brisbane" ) )
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        // reference app delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         // construct default treasure map annotation focus
         appDelegate.userAnnotationsFocus = []
