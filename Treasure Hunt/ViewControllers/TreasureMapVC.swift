@@ -23,8 +23,9 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // ViewController and Map Load Config
+        // ViewController is the delegate of the MKMapViewDelegate protocol
         treasureMap.delegate = self
+        
     }
     
     // prior map processing before load
@@ -67,13 +68,6 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
         
-        /*
-        // zoom to user location
-        let noLocation = CLLocationCoordinate2D()
-        let viewRegion = MKCoordinateRegionMakeWithDistance(noLocation, 10000000, 10000000)
-        treasureMap.setRegion(viewRegion, animated: false)
-        */
-        
         // dispatch the update of location tasks to main thread
         DispatchQueue.main.async {
             self.locationManager.startUpdatingLocation()
@@ -93,9 +87,6 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         let myLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
         let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
         
-        // set region to the treasure map
-        treasureMap.setRegion(region, animated: true)
-        
         // print pointless test information
         print(location?.altitude as Any)
         print(location?.speed as Any)
@@ -109,7 +100,65 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
         // handle span size dependant on all annotations
-        self.treasureMap.showAnnotations(self.treasureMap.annotations, animated: true)
+        self.treasureMap.showAnnotations(self.treasureMap.annotations, animated: false)
+        
+        // get currentUser from app delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        // if a treasure focus exists
+        if appDelegate.treasureFocus != -1 {
+            loadRoute(
+                source:(treasureMap.annotations.first?.coordinate)!,
+                destination:(treasureMap.annotations.last?.coordinate)!
+            )
+        }
+    }
+    
+    func loadRoute( source:CLLocationCoordinate2D, destination:CLLocationCoordinate2D ) {
+        // Create placemark objects containing the location's coordinates
+        let sourcePlacemark = MKPlacemark(coordinate: source, addressDictionary: nil)
+        let destinationPlacemark = MKPlacemark(coordinate: destination, addressDictionary: nil)
+        
+        // MKMapitems are used for routing. This class encapsulates information about a specific point on the map
+        let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
+        let destinationMapItem = MKMapItem(placemark: destinationPlacemark)
+        
+        // The MKDirectionsRequest class is used to compute the route.
+        let directionRequest = MKDirectionsRequest()
+        directionRequest.source = sourceMapItem
+        directionRequest.destination = destinationMapItem
+        directionRequest.transportType = .automobile
+        
+        // Calculate the direction
+        let directions = MKDirections(request: directionRequest)
+        
+        // The route will be drawn using a polyline as a overlay view on top of the map. The region is set so both locations will be visible
+        directions.calculate {
+            (response, error) -> Void in
+            
+            guard let response = response else {
+                if let error = error {
+                    print("Error: \(error)")
+                }
+                
+                return
+            }
+            
+            let route = response.routes[0]
+            self.treasureMap.add((route.polyline), level: MKOverlayLevel.aboveRoads)
+            
+            // handle span size dependant on all annotations
+            self.treasureMap.showAnnotations(self.treasureMap.annotations, animated: false)
+        }
+    }
+    
+    // render line for route
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = UIColor.red
+        renderer.lineWidth = 4.0
+        
+        return renderer
     }
     
     // annotate treasure list handed to view controller
