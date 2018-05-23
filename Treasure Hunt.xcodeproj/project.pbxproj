@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3A31CB1D20A9524700AC4CB0 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A31CB1C20A9524700AC4CB0 /* CoreData.framework */; };
 		3A31CB1F20A95AB500AC4CB0 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A31CB1E20A95AB500AC4CB0 /* MapKit.framework */; };
-		3A31CB2120A98D4F00AC4CB0 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A31CB2020A98D4F00AC4CB0 /* MainTabBarController.swift */; };
 		3A4AEB0220A573F800A940B6 /* FriendVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AEB0120A573F800A940B6 /* FriendVC.swift */; };
 		3A4AEB0420A5744F00A940B6 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AEB0320A5744F00A940B6 /* ProfileVC.swift */; };
 		3A4AEB0620A574A000A940B6 /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A4AEB0520A574A000A940B6 /* SettingsVC.swift */; };
@@ -20,6 +19,7 @@
 		3A5410D720A5394F002D612D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3A5410D620A5394F002D612D /* Assets.xcassets */; };
 		3A5410DA20A5394F002D612D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A5410D820A5394F002D612D /* LaunchScreen.storyboard */; };
 		3A5410E220A53E31002D612D /* TreasureMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5410E120A53E31002D612D /* TreasureMapVC.swift */; };
+		3A60F81620B5784400546EB9 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A60F81520B5784400546EB9 /* NavigationController.swift */; };
 		3AC47E6120A57A2600F2FF93 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC47E6020A57A2600F2FF93 /* user.swift */; };
 		3AC47E6320A57A3800F2FF93 /* treasure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC47E6220A57A3800F2FF93 /* treasure.swift */; };
 		3AC47E6520A57D1500F2FF93 /* person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC47E6420A57D1500F2FF93 /* person.swift */; };
@@ -28,7 +28,6 @@
 /* Begin PBXFileReference section */
 		3A31CB1C20A9524700AC4CB0 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		3A31CB1E20A95AB500AC4CB0 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		3A31CB2020A98D4F00AC4CB0 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		3A4AEB0120A573F800A940B6 /* FriendVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendVC.swift; sourceTree = "<group>"; };
 		3A4AEB0320A5744F00A940B6 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		3A4AEB0520A574A000A940B6 /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
@@ -41,6 +40,7 @@
 		3A5410D920A5394F002D612D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3A5410DB20A5394F002D612D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A5410E120A53E31002D612D /* TreasureMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreasureMapVC.swift; sourceTree = "<group>"; };
+		3A60F81520B5784400546EB9 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		3AC47E6020A57A2600F2FF93 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
 		3AC47E6220A57A3800F2FF93 /* treasure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = treasure.swift; sourceTree = "<group>"; };
 		3AC47E6420A57D1500F2FF93 /* person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = person.swift; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 				3A4AEB0320A5744F00A940B6 /* ProfileVC.swift */,
 				3A4AEB0120A573F800A940B6 /* FriendVC.swift */,
 				3A5410E120A53E31002D612D /* TreasureMapVC.swift */,
-				3A31CB2020A98D4F00AC4CB0 /* MainTabBarController.swift */,
+				3A60F81520B5784400546EB9 /* NavigationController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -201,7 +201,6 @@
 			files = (
 				3A5410E220A53E31002D612D /* TreasureMapVC.swift in Sources */,
 				3A4AEB0220A573F800A940B6 /* FriendVC.swift in Sources */,
-				3A31CB2120A98D4F00AC4CB0 /* MainTabBarController.swift in Sources */,
 				3A5410D520A5394D002D612D /* Treasure_Hunt.xcdatamodeld in Sources */,
 				3A5410CF20A5394D002D612D /* MainMenuVC.swift in Sources */,
 				3AC47E6320A57A3800F2FF93 /* treasure.swift in Sources */,
@@ -209,6 +208,7 @@
 				3AC47E6520A57D1500F2FF93 /* person.swift in Sources */,
 				3A5410CD20A5394D002D612D /* AppDelegate.swift in Sources */,
 				3A4AEB0420A5744F00A940B6 /* ProfileVC.swift in Sources */,
+				3A60F81620B5784400546EB9 /* NavigationController.swift in Sources */,
 				3A4AEB0620A574A000A940B6 /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
