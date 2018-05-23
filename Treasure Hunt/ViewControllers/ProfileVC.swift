@@ -20,7 +20,14 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var user: User?
     var treasureSelection: Int = -1     // treasure index in user treasure list
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // deselect selected cell
+        if let index = treasureView.indexPathForSelectedRow{
+            treasureView.deselectRow(at: index, animated: false)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,9 +53,6 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         // construct treasure map annotation based on user in focus
         appDelegate.userAnnotationsFocus = []
         appDelegate.userAnnotationsFocus.append( user! )
-        
-        // clear treasure focus index
-        appDelegate.treasureFocus = -1
     }
     
     // set sections in table view dependant on user count
@@ -109,7 +113,6 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     }
     
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -117,6 +120,5 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
     }
-    */
 
 }
