@@ -66,8 +66,9 @@ class Treasure: NSObject, MKAnnotation {
         // typealias CLGeocodeCompletionHandler = ([CLPlacemark]?, Error?) -> Void
         CLGeocoder().geocodeAddressString( destination ) {
             (placemarks, error) in
-            let placemark = placemarks?.first
-            self.coordinate = (placemark?.location?.coordinate)!
+            if let placemark = placemarks?.first {
+                self.coordinate = (placemark.location?.coordinate)!
+            }
         }
     }
     
