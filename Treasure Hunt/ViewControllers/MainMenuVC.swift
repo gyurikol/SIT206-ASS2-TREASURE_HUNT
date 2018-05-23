@@ -18,9 +18,9 @@ class MainMenuVC: UIViewController {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         // construct default treasure map annotation focus
-        appDelegate.treasureAnnotationFocus = []
+        appDelegate.userAnnotationsFocus = []
         for friend in appDelegate.currentUser.friends {
-            appDelegate.treasureAnnotationFocus.append( friend )
+            appDelegate.userAnnotationsFocus.append( friend )
         }
     }
 
