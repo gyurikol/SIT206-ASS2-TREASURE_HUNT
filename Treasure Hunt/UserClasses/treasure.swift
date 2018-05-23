@@ -15,9 +15,10 @@ import CoreData
 // Treasure class that acts as the individual loaded resource of a user
 class Treasure: NSObject, MKAnnotation {
     // Properties
+    private var tID : String
     var title : String?
     var subTitle : String?
-    var date: String?
+    var date : String?
                                                 // --- end of optionals
     var img: UIImage = UIImage(named: "tc-S")!
     var coordinate : CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
@@ -28,14 +29,16 @@ class Treasure: NSObject, MKAnnotation {
     init( Content : String )
     {
         content = Content
+        tID = UUID().uuidString
         super.init()                            // super init to be able to access class operators
         
         date = getDate()                        // set treasure date
         updateTripData()
     }
-    init( Content : String, Destination: String )
+    init( identifier: String, Content : String, Destination: String )
     {
         content = Content
+        tID = identifier
         super.init()                            // super init to be able to access class operators
         
         date = getDate()                        // set treasure date

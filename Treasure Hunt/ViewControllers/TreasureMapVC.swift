@@ -13,7 +13,8 @@ import CoreLocation     // user location module
 class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     
     // Outlets
-    @IBOutlet weak var treasureMap: MKMapView!      // UI for map
+    @IBOutlet weak var treasureMap: MKMapView!          // UI for map
+    @IBOutlet weak var buryTreasureButton: UIButton!    // Button to bury treasure
     
     // Variables
     var currentUser: User!
@@ -101,9 +102,6 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             return userLoc
         }
         */
-        if let ulav = mapView.view(for: annotation) {
-            ulav.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-        }
         
         if ((annotation as? Treasure) != nil) {
             if annotationView == nil {

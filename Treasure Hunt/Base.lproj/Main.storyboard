@@ -23,7 +23,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ugl-DK-pus">
-                                <rect key="frame" x="311" y="29" width="50" height="50"/>
+                                <rect key="frame" x="265" y="52" width="75" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="bury-treasure"/>
                             </button>
@@ -33,6 +33,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Treasure Map" image="tm-25" id="dKI-CW-0tx"/>
                     <connections>
+                        <outlet property="buryTreasureButton" destination="Ugl-DK-pus" id="DMf-ku-V9A"/>
                         <outlet property="treasureMap" destination="W50-Xn-uVl" id="g4O-J2-qQY"/>
                     </connections>
                 </viewController>
@@ -223,7 +224,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="bury-treasure" width="50" height="50"/>
+        <image name="bury-treasure" width="75" height="75"/>
         <image name="menu-25" width="25" height="25"/>
         <image name="tm-25" width="25" height="25"/>
     </resources>
