@@ -19,6 +19,7 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     @IBOutlet weak var userUsername: UILabel!
     
     var user: User?
+    var treasureSelection: Int = -1     // treasure index in user treasure list
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +44,11 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         // construct treasure map annotation based on user in focus
-        appDelegate.treasureAnnotationFocus = []
-        appDelegate.treasureAnnotationFocus.append( user! )
+        appDelegate.userAnnotationsFocus = []
+        appDelegate.userAnnotationsFocus.append( user! )
+        
+        // clear treasure focus index
+        appDelegate.treasureFocus = -1
     }
     
     // set sections in table view dependant on user count
@@ -86,6 +90,17 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // reference app delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        // set index of treasure to be focues
+        appDelegate.treasureFocus = indexPath.row
+        
+        // segue to treasure map
+        self.performSegue(withIdentifier: "treasureRouteSegue", sender: self)
     }
 
     override func didReceiveMemoryWarning() {
