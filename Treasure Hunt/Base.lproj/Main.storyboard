@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VUL-xF-STn">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TGe-FO-2sT">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" zoomEnabled="NO" pitchEnabled="NO" showsBuildings="NO" showsPointsOfInterest="NO" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W50-Xn-uVl">
-                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" zoomEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" showsBuildings="NO" showsPointsOfInterest="NO" showsScale="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W50-Xn-uVl">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ugl-DK-pus">
@@ -31,7 +31,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="BMG-fp-8Bx"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Treasure Map" image="tm-25" id="dKI-CW-0tx"/>
+                    <tabBarItem key="tabBarItem" tag="1" title="Treasure Map" image="tm-25" id="dKI-CW-0tx"/>
                     <connections>
                         <outlet property="buryTreasureButton" destination="Ugl-DK-pus" id="DMf-ku-V9A"/>
                         <outlet property="treasureMap" destination="W50-Xn-uVl" id="g4O-J2-qQY"/>
@@ -39,12 +39,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFG-xg-zmw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="80.799999999999997" y="-323.38830584707648"/>
+            <point key="canvasLocation" x="2138" y="-1905"/>
         </scene>
         <!--Menu-->
         <scene sceneID="Xyi-sK-ONa">
             <objects>
-                <navigationController id="TGe-FO-2sT" sceneMemberID="viewController">
+                <navigationController id="TGe-FO-2sT" customClass="NavigationControllerViewController" customModule="Treasure_Hunt" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Menu" image="menu-25" id="MXS-CM-RQe"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="nmi-YG-jro">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
@@ -56,25 +56,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fAa-Nb-P41" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="82" y="-1120"/>
-        </scene>
-        <!--Main Tab Bar Controller-->
-        <scene sceneID="Rm0-Hz-gf1">
-            <objects>
-                <tabBarController id="VUL-xF-STn" customClass="MainTabBarController" customModule="Treasure_Hunt" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Kgv-X6-vez">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="TGe-FO-2sT" kind="relationship" relationship="viewControllers" id="JkB-VG-iGm"/>
-                        <segue destination="rrt-3z-bjs" kind="relationship" relationship="viewControllers" id="Qfz-UW-GaP"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="pai-Xs-Y5t" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-870" y="-773"/>
+            <point key="canvasLocation" x="-574" y="-1121"/>
         </scene>
         <!--Main Menu-->
         <scene sceneID="tne-QT-ifu">
@@ -108,6 +90,14 @@
                                     <segue destination="QrY-iy-ecA" kind="show" id="yMi-DH-Sgh"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EPH-0P-EYR">
+                                <rect key="frame" x="150" y="572" width="75" height="75"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <state key="normal" image="tm-75"/>
+                                <connections>
+                                    <segue destination="rrt-3z-bjs" kind="show" id="DbH-vb-bxE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -117,7 +107,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="880.79999999999995" y="-1121.2893553223389"/>
+            <point key="canvasLocation" x="318" y="-1121"/>
         </scene>
         <!--ProfileVC-->
         <scene sceneID="5p0-Vh-Un7">
@@ -177,12 +167,12 @@
                         <outlet property="userFirstname" destination="GJW-et-I2u" id="dXx-Y8-HM6"/>
                         <outlet property="userSurname" destination="Fmc-yw-VZ0" id="EMO-hY-sX0"/>
                         <outlet property="userUsername" destination="RNP-at-swS" id="L3z-Hg-bzM"/>
-                        <segue destination="rrt-3z-bjs" kind="show" identifier="treasureRouteSegue" id="yXr-Ki-C3z"/>
+                        <segue destination="rrt-3z-bjs" kind="show" identifier="treasureRouteSegue" id="Wy6-nM-Qa1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dHX-Jh-LKs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1809" y="-323"/>
+            <point key="canvasLocation" x="1354" y="-323"/>
         </scene>
         <!--Friends-->
         <scene sceneID="Eie-aO-I6V">
@@ -229,7 +219,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PCr-LU-kqD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1809" y="-1121"/>
+            <point key="canvasLocation" x="1353" y="-1121"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="a1l-ez-1iQ">
@@ -244,16 +234,17 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3Rs-Ch-z4B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1809" y="-1840"/>
+            <point key="canvasLocation" x="318" y="-1904"/>
         </scene>
     </scenes>
     <resources>
         <image name="bury-treasure" width="75" height="75"/>
         <image name="menu-25" width="25" height="25"/>
         <image name="tm-25" width="25" height="25"/>
+        <image name="tm-75" width="75" height="75"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9A8-dO-zGW"/>
-        <segue reference="yXr-Ki-C3z"/>
+        <segue reference="vxc-rD-6oe"/>
+        <segue reference="DbH-vb-bxE"/>
     </inferredMetricsTieBreakers>
 </document>
