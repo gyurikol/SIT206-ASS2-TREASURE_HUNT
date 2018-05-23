@@ -25,13 +25,11 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         // ViewController and Map Load Config
         treasureMap.delegate = self
-        
-        // perform view load tasks for user location
-        userLocationLoadTasks()
     }
     
     // prior map processing before load
     override func viewWillAppear(_ animated: Bool) {
+        
         // clear map annotations
         let allAnnotations = self.treasureMap.annotations
         self.treasureMap.removeAnnotations(allAnnotations)
@@ -40,11 +38,21 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         // annotate treasures from currentUser
-        for user in appDelegate.treasureAnnotationFocus {
-            for treasure in user.treasures {
-                treasureMap.addAnnotation( treasure ) // test map annotation
+        for user in appDelegate.userAnnotationsFocus {
+            for i in 0...(user.treasures.count-1) {
+                // if treasure focus index is set
+                if appDelegate.treasureFocus != -1{
+                    // if i is not equal to treasure focus
+                    if i != appDelegate.treasureFocus {
+                        continue    // continue iteration
+                    }
+                }
+                treasureMap.addAnnotation( user.treasures[i] )  // add annotation to map
             }
         }
+        
+        // perform view load tasks for user location
+        userLocationLoadTasks()
     }
     
     func userLocationLoadTasks() {
@@ -59,10 +67,12 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
         
+        /*
         // zoom to user location
         let noLocation = CLLocationCoordinate2D()
         let viewRegion = MKCoordinateRegionMakeWithDistance(noLocation, 10000000, 10000000)
         treasureMap.setRegion(viewRegion, animated: false)
+        */
         
         // dispatch the update of location tasks to main thread
         DispatchQueue.main.async {
@@ -92,6 +102,14 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         // re set show user location property
         self.treasureMap.showsUserLocation = true
+        
+        // handle span size dependant on all annotations
+        self.treasureMap.showAnnotations(self.treasureMap.annotations, animated: true)
+    }
+    
+    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
+        // handle span size dependant on all annotations
+        self.treasureMap.showAnnotations(self.treasureMap.annotations, animated: true)
     }
     
     // annotate treasure list handed to view controller
