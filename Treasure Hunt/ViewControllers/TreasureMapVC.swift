@@ -17,7 +17,6 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     @IBOutlet weak var buryTreasureButton: UIButton!    // Button to bury treasure
     
     // Variables
-    var currentUser: User!
     var locationManager = CLLocationManager.init()      // initialize location manager
     var userCurrentLocation : CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     
@@ -29,11 +28,12 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         // get currentUser from app delegate
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        currentUser = appDelegate.currentUser
         
         // annotate treasures from currentUser
-        for res in currentUser.treasures {
-            treasureMap.addAnnotation( res ) // test map annotation
+        for user in appDelegate.treasureAnnotationFocus {
+            for treasure in user.treasures {
+                treasureMap.addAnnotation( treasure ) // test map annotation
+            }
         }
         
         // perform view load tasks for user location
@@ -72,7 +72,7 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         // prepare coording and view region for Map UI
         //let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-        let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.11, longitudeDelta: 0.11)
+        let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 30.00, longitudeDelta: 30.00)
         let myLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
         let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
         
@@ -92,17 +92,10 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         let annotationId = "viewForAnnotation"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationId)
         
-        /*
         // if annotation is user location
-        if annotation is MKUserLocation {
-            let userLoc = MKAnnotationView(annotation: annotation, reuseIdentifier: "userLocation")
-            let buryButton = UIButton(type: .custom)
-            buryButton.setImage(UIImage(named: "bury-treasure"), for: .normal)
-            userLoc.detailCalloutAccessoryView = buryButton
-            return userLoc
-        }
-        */
+        if annotation is MKUserLocation { return nil }  // leave untouched
         
+        // if annotation is a user treasure
         if ((annotation as? Treasure) != nil) {
             if annotationView == nil {
                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationId)

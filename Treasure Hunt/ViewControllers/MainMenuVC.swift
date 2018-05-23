@@ -13,6 +13,15 @@ class MainMenuVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        // reference app delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        // construct default treasure map annotation focus
+        appDelegate.treasureAnnotationFocus = []
+        for friend in appDelegate.currentUser.friends {
+            appDelegate.treasureAnnotationFocus.append( friend )
+        }
     }
 
     override func didReceiveMemoryWarning() {

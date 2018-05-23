@@ -26,10 +26,11 @@ class Treasure: NSObject, MKAnnotation {
     var content: String                         // test content as string first
     
     // Treasure initializer
-    init( Content : String )
+    init( Content : String, Location: CLLocationCoordinate2D )
     {
-        content = Content
-        tID = UUID().uuidString
+        content = Content                       // set paramerized content
+        tID = UUID().uuidString                 // set custom id on construct
+        coordinate = Location                   // construct treasure with coordinate initializer
         super.init()                            // super init to be able to access class operators
         
         date = getDate()                        // set treasure date
@@ -37,8 +38,8 @@ class Treasure: NSObject, MKAnnotation {
     }
     init( identifier: String, Content : String, Destination: String )
     {
-        content = Content
-        tID = identifier
+        content = Content                       // set paramerized content
+        tID = identifier                        // set preknown id on construct
         super.init()                            // super init to be able to access class operators
         
         date = getDate()                        // set treasure date
