@@ -26,6 +26,16 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         // ViewController and Map Load Config
         treasureMap.delegate = self
         
+        // perform view load tasks for user location
+        userLocationLoadTasks()
+    }
+    
+    // prior map processing before load
+    override func viewWillAppear(_ animated: Bool) {
+        // clear map annotations
+        let allAnnotations = self.treasureMap.annotations
+        self.treasureMap.removeAnnotations(allAnnotations)
+        
         // get currentUser from app delegate
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
@@ -35,9 +45,6 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                 treasureMap.addAnnotation( treasure ) // test map annotation
             }
         }
-        
-        // perform view load tasks for user location
-        userLocationLoadTasks()
     }
     
     func userLocationLoadTasks() {

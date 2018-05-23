@@ -12,6 +12,8 @@ class FriendVC: UITableViewController {
 
     var friendList: [User] = []
     
+    var selectedFriend: User?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -20,6 +22,12 @@ class FriendVC: UITableViewController {
         // set currentUser friendlist from app delegate
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         friendList = appDelegate.currentUser.friends
+        
+        // construct treasure map annotations based on friends list
+        appDelegate.treasureAnnotationFocus = []
+        for friend in appDelegate.currentUser.friends {
+            appDelegate.treasureAnnotationFocus.append( friend )
+        }
     }
     
     // set sections in table view to singular
@@ -58,7 +66,9 @@ class FriendVC: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("clicked cell in friends list")
+        // set selected friend to specified friend in list
+        selectedFriend = friendList[indexPath.row]
+        self.performSegue(withIdentifier: "showFriendProfile", sender: self)
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,14 +77,19 @@ class FriendVC: UITableViewController {
     }
     
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.destination is ProfileVC
+        {
+            // send selected friend to profile view controller
+            let vc = segue.destination as? ProfileVC
+            vc?.user = selectedFriend
+        }
     }
-    */
 
 }

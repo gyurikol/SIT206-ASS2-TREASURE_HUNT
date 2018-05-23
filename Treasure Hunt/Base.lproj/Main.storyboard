@@ -222,10 +222,13 @@
                             <outlet property="delegate" destination="Mcx-c0-Qsw" id="miz-rV-rrc"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="Fm8-pH-MAj" kind="show" identifier="showFriendProfile" id="9A8-dO-zGW"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PCr-LU-kqD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1809" y="-1783"/>
+            <point key="canvasLocation" x="1809" y="-1929"/>
         </scene>
         <!--SettingsVC-->
         <scene sceneID="a1l-ez-1iQ">
@@ -248,4 +251,7 @@
         <image name="menu-25" width="25" height="25"/>
         <image name="tm-25" width="25" height="25"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="9A8-dO-zGW"/>
+    </inferredMetricsTieBreakers>
 </document>

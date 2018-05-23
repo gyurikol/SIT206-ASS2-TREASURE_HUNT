@@ -38,6 +38,13 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         } else {
             displayPicture.image = user!.person.userImage
         }
+        
+        // reference app delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        // construct treasure map annotation based on user in focus
+        appDelegate.treasureAnnotationFocus = []
+        appDelegate.treasureAnnotationFocus.append( user! )
     }
     
     // set sections in table view dependant on user count
