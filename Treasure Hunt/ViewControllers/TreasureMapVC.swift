@@ -31,10 +31,6 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     // prior map processing before load
     override func viewWillAppear(_ animated: Bool) {
         
-        // clear map annotations
-        let allAnnotations = self.treasureMap.annotations
-        self.treasureMap.removeAnnotations(allAnnotations)
-        
         // get currentUser from app delegate
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
@@ -54,6 +50,23 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         // perform view load tasks for user location
         userLocationLoadTasks()
+    }
+    
+    // when view disappears clear annotations and overlay
+    override func viewDidDisappear(_ animated: Bool) {
+        // clear map annotations
+        let allAnnotations = self.treasureMap.annotations
+        self.treasureMap.removeAnnotations(allAnnotations)
+        
+        // clear map overlays
+        let allOverlays = self.treasureMap.overlays
+        self.treasureMap.removeOverlays(allOverlays)
+        
+        // get currentUser from app delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        // clear treasure focus
+        appDelegate.treasureFocus = -1
     }
     
     func userLocationLoadTasks() {
@@ -81,12 +94,6 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         // set class level user current location
         userCurrentLocation = (location?.coordinate)!
         
-        // prepare coording and view region for Map UI
-        //let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-        let span:MKCoordinateSpan = MKCoordinateSpan(latitudeDelta: 30.00, longitudeDelta: 30.00)
-        let myLocation: CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: (location?.coordinate.latitude)!, longitude: (location?.coordinate.longitude)!)
-        let region:MKCoordinateRegion = MKCoordinateRegionMake(myLocation, span)
-        
         // print pointless test information
         print(location?.altitude as Any)
         print(location?.speed as Any)
@@ -95,13 +102,11 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         self.treasureMap.showsUserLocation = true
         
         // handle span size dependant on all annotations
-        self.treasureMap.showAnnotations(self.treasureMap.annotations, animated: true)
+        self.treasureMap.showAnnotations(self.treasureMap.annotations, animated: false)
     }
     
-    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
-        // handle span size dependant on all annotations
-        self.treasureMap.showAnnotations(self.treasureMap.annotations, animated: false)
-        
+    // when map is fully rendered add route path for treasure
+    func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
         // get currentUser from app delegate
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
@@ -112,6 +117,11 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                 destination:(treasureMap.annotations.last?.coordinate)!
             )
         }
+    }
+    
+    func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
+        // handle span size dependant on all annotations
+        self.treasureMap.showAnnotations(self.treasureMap.annotations, animated: false)
     }
     
     func loadRoute( source:CLLocationCoordinate2D, destination:CLLocationCoordinate2D ) {
@@ -154,9 +164,11 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     // render line for route
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        
         let renderer = MKPolylineRenderer(overlay: overlay)
         renderer.strokeColor = UIColor.red
-        renderer.lineWidth = 4.0
+        renderer.lineWidth = 6.0
+        renderer.lineDashPattern = [10,20]
         
         return renderer
     }
@@ -179,7 +191,6 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                 // three functions for treasure selection
                 annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
                 annotationView?.detailCalloutAccessoryView = UIButton(type: .detailDisclosure)
-                annotationView?.leftCalloutAccessoryView = UIButton(type: .detailDisclosure)
                 
             }
             else { annotationView?.annotation = annotation }
