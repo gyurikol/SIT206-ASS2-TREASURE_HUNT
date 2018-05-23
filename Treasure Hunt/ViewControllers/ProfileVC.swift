@@ -96,6 +96,12 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+    // show friends treasures
+    @IBAction func openFriendTreasureMap(_ sender: UIButton) {
+        // segue to treasure map
+        self.performSegue(withIdentifier: "treasureRouteSegue", sender: self)
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // reference app delegate
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
