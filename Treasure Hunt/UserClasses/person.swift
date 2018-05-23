@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 // person structure acts as identity of person (user/friend)
 class PersonDetails {
@@ -16,6 +17,7 @@ class PersonDetails {
     var firstname: String           // user firstname
     var surname : String            // user surname
     var email : String              // user email
+    var userImage : UIImage? = nil  // user display image
     
     init(
         // Class Initialization Parameters

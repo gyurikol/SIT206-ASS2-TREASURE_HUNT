@@ -44,13 +44,21 @@ class FriendVC: UITableViewController {
         // set cell detail label to full name of friend
         cell.detailTextLabel?.text = "\(friend.person.firstname) \(friend.person.surname)"
         
-        // set no display image for friend user
-        cell.imageView?.image = UIImage(named: "no-img-S")
+        // set user image
+        if friend.person.userImage == nil {
+            cell.imageView?.image = UIImage(named: "no-img-S")
+        } else {
+            cell.imageView?.image = friend.person.userImage
+        }
         
         // show disclosure indicator in row cell
         cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("clicked cell in friends list")
     }
 
     override func didReceiveMemoryWarning() {

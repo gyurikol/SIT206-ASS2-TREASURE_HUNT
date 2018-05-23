@@ -47,8 +47,7 @@ class MainMenuVC: UIViewController {
         {
             // to treasure resource view controller
             let vc = segue.destination as? ProfileVC
-            vc?.userList = []
-            vc?.userList.append( appDelegate.currentUser )
+            vc?.user = appDelegate.currentUser
         }
     }
 

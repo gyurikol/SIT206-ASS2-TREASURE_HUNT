@@ -13,8 +13,12 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // IBoutlets
     @IBOutlet weak var treasureView: UITableView!
+    @IBOutlet weak var displayPicture: UIImageView!
+    @IBOutlet weak var userFirstname: UILabel!
+    @IBOutlet weak var userSurname: UILabel!
+    @IBOutlet weak var userUsername: UILabel!
     
-    var userList: [User] = []
+    var user: User?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,14 +26,26 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         // Do any additional setup after loading the view.
         treasureView.dataSource = self
         treasureView.delegate = self
+        
+        // set user details
+        userFirstname.text = user!.person.firstname
+        userSurname.text = user!.person.surname
+        userUsername.text = user!.person.username
+        
+        // set user image
+        if user!.person.userImage == nil {
+            displayPicture.image = UIImage(named: "no-img-S")
+        } else {
+            displayPicture.image = user!.person.userImage
+        }
     }
     
     // set sections in table view dependant on user count
-    func numberOfSections(in tableView: UITableView) -> Int { return userList.count }
+    func numberOfSections(in tableView: UITableView) -> Int { return 1 }
     
     // set table row count dependant on number of treasures in user
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return userList[section].treasures.count
+        return user!.treasures.count
     }
     
     // set header for section
@@ -37,9 +53,9 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        if(userList[section].person == appDelegate.currentUser.person) { return "Your Treasures" }
+        if(user!.person == appDelegate.currentUser.person) { return "Your Treasures" }
         else
-        { return "\(userList[section].person.username) Treasures" }
+        { return "\(user!.person.username) Treasures" }
     }
     
     // set cell definition and table population properties
@@ -48,7 +64,7 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "treasureCell", for: indexPath)
         
         // get treasure from index path of section and row
-        let treasure = userList[indexPath.section].treasures[indexPath.row]
+        let treasure = user!.treasures[indexPath.row]
         
         // set text label to treasure ????????
         cell.textLabel?.text = treasure.content
