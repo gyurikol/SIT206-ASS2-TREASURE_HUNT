@@ -43,10 +43,10 @@ class MainMenuVC: UIViewController {
         if segue.destination is FriendVC
         {
             // to friend view controller
-        } else if segue.destination is TreasureResourceVC
+        } else if segue.destination is ProfileVC
         {
             // to treasure resource view controller
-            let vc = segue.destination as? TreasureResourceVC
+            let vc = segue.destination as? ProfileVC
             vc?.userList = []
             vc?.userList.append( appDelegate.currentUser )
         }

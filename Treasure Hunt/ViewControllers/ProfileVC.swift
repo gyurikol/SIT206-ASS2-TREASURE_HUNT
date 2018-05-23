@@ -9,7 +9,10 @@
 import UIKit
 
 // Class where the table view will unpack the list of user sent and display appropriate sections and cells for the user and treasures
-class TreasureResourceVC: UITableViewController {
+class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    // IBoutlets
+    @IBOutlet weak var treasureView: UITableView!
     
     var userList: [User] = []
 
@@ -17,18 +20,20 @@ class TreasureResourceVC: UITableViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        treasureView.dataSource = self
+        treasureView.delegate = self
     }
     
     // set sections in table view dependant on user count
-    override func numberOfSections(in tableView: UITableView) -> Int { return userList.count }
+    func numberOfSections(in tableView: UITableView) -> Int { return userList.count }
     
     // set table row count dependant on number of treasures in user
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return userList[section].treasures.count
     }
     
     // set header for section
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
@@ -38,7 +43,7 @@ class TreasureResourceVC: UITableViewController {
     }
     
     // set cell definition and table population properties
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // get next usable cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "treasureCell", for: indexPath)
         
