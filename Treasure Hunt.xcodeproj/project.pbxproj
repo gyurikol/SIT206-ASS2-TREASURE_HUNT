@@ -59,6 +59,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3A09C53420B6A4DF001DAF76 /* treasureContent */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = treasureContent;
+			sourceTree = "<group>";
+		};
 		3A31CB1B20A9524700AC4CB0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +78,7 @@
 		3A4AEB0720A5772800A940B6 /* UserClasses */ = {
 			isa = PBXGroup;
 			children = (
+				3A09C53420B6A4DF001DAF76 /* treasureContent */,
 				3AC47E6020A57A2600F2FF93 /* user.swift */,
 				3AC47E6220A57A3800F2FF93 /* treasure.swift */,
 				3AC47E6420A57D1500F2FF93 /* person.swift */,
