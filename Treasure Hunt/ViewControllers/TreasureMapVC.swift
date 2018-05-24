@@ -107,16 +107,6 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     // when map is fully rendered add route path for treasure
     func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
-        // get currentUser from app delegate
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        
-        // if a treasure focus exists
-        if appDelegate.treasureFocus != -1 {
-            loadRoute(
-                source:(treasureMap.annotations.first?.coordinate)!,
-                destination:(treasureMap.annotations.last?.coordinate)!
-            )
-        }
     }
     
     func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
@@ -178,8 +168,37 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         let annotationId = "viewForAnnotation"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationId)
         
+        // check if annotations contain user location
+        let isUserLocationAnnotation = treasureMap.annotations.contains {
+            element in
+            if element is MKUserLocation {
+                return true
+            }
+            return false
+        }
+        // if so and if annotation count is two
+        if (isUserLocationAnnotation) && (treasureMap.annotations.count == 2) {
+            // get currentUser from app delegate
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+            // if a treasure focus exists
+            if appDelegate.treasureFocus != -1 {
+                // render route from user location to treasure
+                loadRoute(
+                    source:(treasureMap.annotations.first?.coordinate)!,
+                    destination:(treasureMap.annotations.last?.coordinate)!
+                )
+            }
+        }
+        
         // if annotation is user location
         if annotation is MKUserLocation { return nil }  // leave untouched
+        
+        if annotation.isEqual(mapView.userLocation) {
+            let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "userLocation")
+            annotationView.image = UIImage(named: "geo")
+            return annotationView
+        }
         
         // if annotation is a user treasure
         if ((annotation as? Treasure) != nil) {
