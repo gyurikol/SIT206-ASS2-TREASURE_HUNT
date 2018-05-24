@@ -28,6 +28,9 @@ class MainMenuVC: UIViewController {
             appDelegate.currentUser.friends[1].treasures.append( Treasure(identifier: "2", Content: "Darwin", Destination: "Darwin" ) )
             appDelegate.currentUser.friends[2].treasures.append( Treasure(identifier: "3", Content: "Brisbane", Destination: "Brisbane" ) )
         }
+        
+        // start background music
+        SKTAudio.sharedInstance().playBackgroundMusic()
     }
     
     override func viewDidAppear(_ animated: Bool) {
