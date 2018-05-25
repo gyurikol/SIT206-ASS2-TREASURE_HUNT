@@ -21,6 +21,9 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var user: User?
     var treasureSelection: Int = -1     // treasure index in user treasure list
     
+    // prepare array for table population
+    var userUnfoundFound : [[Treasure]] = [[],[]]
+    
     override func viewWillAppear(_ animated: Bool) {
         // deselect selected cell
         if let index = treasureView.indexPathForSelectedRow{
@@ -53,24 +56,48 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         // construct treasure map annotation based on user in focus
         appDelegate.userAnnotationsFocus = []
         appDelegate.userAnnotationsFocus.append( user! )
+        
+        // get found unfound treasures
+        for tres in user!.treasures {
+            if appDelegate.currentUser.foundTreasure.contains(tres.getIdentity()) {
+                userUnfoundFound[1].append(tres)
+                continue
+            }
+            userUnfoundFound[0].append(tres)
+        }
     }
     
     // set sections in table view dependant on user count
-    func numberOfSections(in tableView: UITableView) -> Int { return 1 }
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return userUnfoundFound.count
+    }
     
     // set table row count dependant on number of treasures in user
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // get currentUser from app delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        // if person is not current user
+        if(user!.person != appDelegate.currentUser.person) {
+            return userUnfoundFound[section].count
+        }
+        // if person is current user
         return user!.treasures.count
     }
     
     // set header for section
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        if(user!.person == appDelegate.currentUser.person) { return "Your Treasures" }
+        if(user!.person == appDelegate.currentUser.person)
+        { return "Your Treasures" }
         else
-        { return "\(user!.person.username) Treasures" }
+        {
+            if section == 1 {
+                return "Found Treasures"
+            }
+            return "\(user!.person.username) Treasures"
+        }
     }
     
     // set cell definition and table population properties
@@ -81,24 +108,32 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         // get currentUser from app delegate
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        // set display image to treasure assigned image
-        if appDelegate.currentUser.foundTreasure.contains(user!.treasures[indexPath.row].getIdentity()) {
-            user!.treasures[indexPath.row].img = UIImage(named: "tc-open-S")!
-        }
-        
         // if user is me then treasure is known
         if(user!.person == appDelegate.currentUser.person) {
             user!.treasures[indexPath.row].img = UIImage(named: "tc-open-S")!
         }
         
         // get treasure from index path of section and row
-        let treasure = user!.treasures[indexPath.row]
+        let treasure = userUnfoundFound[indexPath.section][indexPath.row]
         
-        // set text label to treasure ????????
-        cell.textLabel?.text = treasure.content
+        // set display image to treasure assigned image
+        if indexPath.section == 1 {
+            treasure.img = UIImage(named: "tc-open-S")!
+        }
         
-        // set cell detail label to treasure ????????
-        cell.detailTextLabel?.text = treasure.content
+        if appDelegate.currentUser.foundTreasure.contains(treasure.getIdentity()) {
+            // set text label to treasure ????????
+            cell.textLabel?.text = treasure.content
+            
+            // set cell detail label to treasure ????????
+            cell.detailTextLabel?.text = treasure.content
+        } else {
+            // set text label to treasure content
+            cell.textLabel?.text = "? ? ?"
+            
+            // set cell detail label to treasure content
+            cell.detailTextLabel?.text = "? ? ?"
+        }
         
         // set cell image
         cell.imageView?.image = treasure.img
@@ -120,7 +155,8 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         // set index of treasure to be focues
-        appDelegate.treasureFocus = indexPath.row
+        appDelegate.treasureFocus = []
+        appDelegate.treasureFocus.append(userUnfoundFound[indexPath.section][indexPath.row])
         
         // segue to treasure map
         self.performSegue(withIdentifier: "treasureRouteSegue", sender: self)

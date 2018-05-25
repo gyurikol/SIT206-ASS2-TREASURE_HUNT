@@ -36,15 +36,15 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         // annotate treasures from currentUser
         for user in appDelegate.userAnnotationsFocus {
-            for i in 0...(user.treasures.count-1) {
+            for treasure in user.treasures {
                 // if treasure focus index is set
-                if appDelegate.treasureFocus != -1{
+                if appDelegate.treasureFocus.count == 1 {
                     // if i is not equal to treasure focus
-                    if i != appDelegate.treasureFocus {
+                    if treasure.getIdentity() != appDelegate.treasureFocus.first?.getIdentity() {
                         continue    // continue iteration
                     }
                 }
-                treasureMap.addAnnotation( user.treasures[i] )  // add annotation to map
+                treasureMap.addAnnotation( treasure )  // add annotation to map
             }
         }
         
@@ -66,7 +66,7 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         // clear treasure focus
-        appDelegate.treasureFocus = -1
+        appDelegate.treasureFocus = []
     }
     
     func userLocationLoadTasks() {
@@ -182,7 +182,7 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             
             // if a treasure focus exists
-            if appDelegate.treasureFocus != -1 {
+            if appDelegate.treasureFocus.count != 0 {
                 // render route from user location to treasure
                 loadRoute(
                     source:(treasureMap.annotations.first?.coordinate)!,

@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         )
     )
     var userAnnotationsFocus : [User] = []
-    var treasureFocus : Int = -1
+    var treasureFocus : [Treasure] = []
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
