@@ -2,6 +2,22 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Treasure Hunt.xcodeproj">
+      location = "group:../Treasure Hunt/fonts/SFScribbledSans-Bold.ttf">
+   </FileRef>
+   <FileRef
+      location = "group:../Treasure Hunt/fonts/SFScribbledSans.ttf">
+   </FileRef>
+   <FileRef
+      location = "group:../Treasure Hunt/fonts/SFScribbledSansSC-Bold.ttf">
+   </FileRef>
+   <Group
+      location = "container:"
+      name = "New Group">
+   </Group>
+   <FileRef
+      location = "group:../Treasure Hunt/fonts/SFScribbledSansSC.ttf">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>

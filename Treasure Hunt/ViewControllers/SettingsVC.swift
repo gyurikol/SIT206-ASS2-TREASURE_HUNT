@@ -9,7 +9,10 @@
 import UIKit
 
 class SettingsVC: UIViewController {
-
+    
+    // outlets
+    @IBOutlet weak var bgMusicSwitch: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +24,17 @@ class SettingsVC: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    // change background music state
+    @IBAction func bgMusicState(_ sender: UISwitch) {
+        if sender.isOn {
+            // turn background music on
+            SKTAudio.sharedInstance().playBackgroundMusic()
+        } else {
+            // turn background music off
+            SKTAudio.sharedInstance().pauseBackgroundMusic()
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
