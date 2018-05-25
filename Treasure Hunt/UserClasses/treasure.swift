@@ -15,7 +15,7 @@ import CoreData
 // Treasure class that acts as the individual loaded resource of a user
 class Treasure: NSObject, MKAnnotation {
     // Properties
-    private var tID : String
+    private var tID : Int
     var title : String?
     var subTitle : String?
     var date : String?
@@ -26,17 +26,17 @@ class Treasure: NSObject, MKAnnotation {
     var content: String                         // test content as string first
     
     // Treasure initializer
-    init( Content : String, Location: CLLocationCoordinate2D )
+    init( identifier: Int, Content : String, Location: CLLocationCoordinate2D )
     {
         content = Content                       // set paramerized content
-        tID = UUID().uuidString                 // set custom id on construct
+        tID = identifier                        // set custom id on construct
         coordinate = Location                   // construct treasure with coordinate initializer
         super.init()                            // super init to be able to access class operators
         
         date = getDate()                        // set treasure date
         updateTripData()
     }
-    init( identifier: String, Content : String, Destination: String )
+    init( identifier: Int, Content : String, Destination: String )
     {
         content = Content                       // set paramerized content
         tID = identifier                        // set preknown id on construct
@@ -45,6 +45,11 @@ class Treasure: NSObject, MKAnnotation {
         date = getDate()                        // set treasure date
         //updateTripData()
         getLocationFromDestination(destination: Destination)
+    }
+    
+    // return identity
+    func getIdentity() -> Int {
+        return self.tID
     }
     
     func updateTripData() {                     // update the rest of treasure properties

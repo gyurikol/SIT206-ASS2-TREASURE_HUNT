@@ -14,7 +14,7 @@ class User {
     var person : PersonDetails
     var treasures : [Treasure] = []     // Treasures associated with the user
     var friends : [User] = []           // Other Users associated with current device user
-    var foundTreasure : [String] = []   // Identities of Treasures Found
+    var foundTreasure : [Int] = []      // Identities of Treasures Found
     
     // Initializer
     init( details: PersonDetails )

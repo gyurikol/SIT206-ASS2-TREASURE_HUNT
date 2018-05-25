@@ -14,9 +14,6 @@ class MainMenuVC: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        // load test data into application
-        loadTestData()
-        
         // start background music
         SKTAudio.sharedInstance().playBackgroundMusic()
     }
@@ -30,6 +27,11 @@ class MainMenuVC: UIViewController {
         for friend in appDelegate.currentUser.friends {
             appDelegate.userAnnotationsFocus.append( friend )
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // load test data into application
+        loadTestData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -66,8 +68,11 @@ class MainMenuVC: UIViewController {
         if !(appDelegate.currentUser.friends.count > 0) {
             // TESTING - Add Custom Default User for startup
             
-            // add treasure
-            appDelegate.currentUser.treasures.append( Treasure( identifier: "0", Content: "testing 1 2 3", Destination: "Melbourne" ) )
+            // add current user treasure
+            appDelegate.currentUser.treasures.append( Treasure( identifier: 0, Content: "", Destination: "Southbank Melbourne" ) )
+            appDelegate.currentUser.treasures.append( Treasure( identifier: 1, Content: "", Destination: "Richmond Melbourne" ) )
+            appDelegate.currentUser.treasures.append( Treasure( identifier: 2, Content: "", Destination: "North Melbourne" ) )
+            appDelegate.currentUser.treasures.append( Treasure( identifier: 3, Content: "", Destination: "Collingwood" ) )
             
             // add friends
             appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "a", UserName: "zOren", FirstName: "Zachery", Surname: "Orenstein", eMail: "zoren@test.com") ) )
@@ -75,9 +80,23 @@ class MainMenuVC: UIViewController {
             appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "c", UserName: "leLOL", FirstName: "Hilario", Surname: "Legrand", eMail: "hlegrand@test.com") ) )
             
             // add friends treasures
-            appDelegate.currentUser.friends[0].treasures.append( Treasure(identifier: "1", Content: "Perth", Destination: "Perth" ) )
-            appDelegate.currentUser.friends[1].treasures.append( Treasure(identifier: "2", Content: "Darwin", Destination: "Darwin" ) )
-            appDelegate.currentUser.friends[2].treasures.append( Treasure(identifier: "3", Content: "Brisbane", Destination: "Brisbane" ) )
+            appDelegate.currentUser.friends[0].treasures.append( Treasure(identifier: 4, Content: "", Destination: "Brunswick East" ) )
+            appDelegate.currentUser.friends[0].treasures.append( Treasure(identifier: 5, Content: "", Destination: "South Yarra" ) )
+            appDelegate.currentUser.friends[0].treasures.append( Treasure(identifier: 6, Content: "", Destination: "St Kilda East" ) )
+            appDelegate.currentUser.friends[0].treasures.append( Treasure(identifier: 7, Content: "", Destination: "Elwood" ) )
+            
+            appDelegate.currentUser.friends[1].treasures.append( Treasure(identifier: 8, Content: "", Destination: "Toorak" ) )
+            appDelegate.currentUser.friends[1].treasures.append( Treasure(identifier: 9, Content: "", Destination: "Camberwell" ) )
+            appDelegate.currentUser.friends[1].treasures.append( Treasure(identifier: 10, Content: "", Destination: "Footscray" ) )
+            appDelegate.currentUser.friends[1].treasures.append( Treasure(identifier: 11, Content: "", Destination: "Brunswick" ) )
+            
+            appDelegate.currentUser.friends[2].treasures.append( Treasure(identifier: 12, Content: "", Destination: "Geelong" ) )
+            appDelegate.currentUser.friends[2].treasures.append( Treasure(identifier: 13, Content: "", Destination: "Essendon" ) )
+            appDelegate.currentUser.friends[2].treasures.append( Treasure(identifier: 14, Content: "", Destination: "Burwood" ) )
+            appDelegate.currentUser.friends[2].treasures.append( Treasure(identifier: 15, Content: "", Destination: "Ivanhoe" ) )
+            
+            // set found treasure for user
+            appDelegate.currentUser.foundTreasure = [5,10,15]
         }
     }
 

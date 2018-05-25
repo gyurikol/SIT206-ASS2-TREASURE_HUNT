@@ -78,6 +78,19 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         // get next usable cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "treasureCell", for: indexPath)
         
+        // get currentUser from app delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        // set display image to treasure assigned image
+        if appDelegate.currentUser.foundTreasure.contains(user!.treasures[indexPath.row].getIdentity()) {
+            user!.treasures[indexPath.row].img = UIImage(named: "tc-open-S")!
+        }
+        
+        // if user is me then treasure is known
+        if(user!.person == appDelegate.currentUser.person) {
+            user!.treasures[indexPath.row].img = UIImage(named: "tc-open-S")!
+        }
+        
         // get treasure from index path of section and row
         let treasure = user!.treasures[indexPath.row]
         
@@ -87,7 +100,7 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         // set cell detail label to treasure ????????
         cell.detailTextLabel?.text = treasure.content
         
-        // set display image to treasure assigned image
+        // set cell image
         cell.imageView?.image = treasure.img
         
         // show disclosure indicator in row cell
