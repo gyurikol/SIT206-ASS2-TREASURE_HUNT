@@ -29,6 +29,25 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         if let index = treasureView.indexPathForSelectedRow{
             treasureView.deselectRow(at: index, animated: false)
         }
+        
+        // reset the userUnfounFound array to view changes
+        userUnfoundFound = [[],[]]
+        
+        // reference app delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        // for the assurance of reappearance post found treasure after segue
+        // get found unfound treasures
+        for tres in user!.treasures {
+            if appDelegate.currentUser.foundTreasure.contains(tres.getIdentity()) && (user!.person != appDelegate.currentUser.person){
+                userUnfoundFound[1].append(tres)
+                continue
+            }
+            userUnfoundFound[0].append(tres)
+        }
+        
+        // reload data
+        self.treasureView.reloadData()
     }
     
     override func viewDidLoad() {
@@ -56,15 +75,10 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         // construct treasure map annotation based on user in focus
         appDelegate.userAnnotationsFocus = []
         appDelegate.userAnnotationsFocus.append( user! )
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         
-        // get found unfound treasures
-        for tres in user!.treasures {
-            if appDelegate.currentUser.foundTreasure.contains(tres.getIdentity()) && (user!.person != appDelegate.currentUser.person){
-                userUnfoundFound[1].append(tres)
-                continue
-            }
-            userUnfoundFound[0].append(tres)
-        }
     }
     
     // set sections in table view dependant on user count
