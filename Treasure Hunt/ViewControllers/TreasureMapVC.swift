@@ -130,7 +130,7 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                                 // change to UNLOCK CHEST IMAGE
                                 treasureMap.view(for: anno)?.image = UIImage(named: "tc-unlock-S")
                                 let textDetail = UILabel()
-                                textDetail.text = "Unlock"
+                                textDetail.text = "Unlock?"
                                 treasureMap.view(for: anno)?.detailCalloutAccessoryView = textDetail
                                 treasureMap.view(for: anno)?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
                             } else {
@@ -271,7 +271,26 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     // handle treasure/annotation click
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        print("mapview something happened")
+        
+        // if annotation is treasure
+        if ((view.annotation as? Treasure) != nil) {
+            let tempTreasure = view.annotation as? Treasure
+            
+            // get currentUser from app delegate
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+            // if treasure is not found then make treasure found
+            if !appDelegate.currentUser.foundTreasure.contains((tempTreasure?.getIdentity())!) {
+                appDelegate.currentUser.foundTreasure.append((tempTreasure?.getIdentity())!)
+                treasureMap.view(for: tempTreasure!)?.image = UIImage(named: "tc-open-S")
+                let textDetail = UILabel()
+                textDetail.text = "Preview Treasure"
+                treasureMap.view(for: tempTreasure!)?.detailCalloutAccessoryView = textDetail
+            }
+        }
+        
+        // segue to treasure view ViewController
+        self.performSegue(withIdentifier: "mapToViewTreasure", sender: self)
     }
     
     override func didReceiveMemoryWarning() {
