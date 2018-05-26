@@ -103,6 +103,39 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         // handle span size dependant on all annotations
         self.treasureMap.showAnnotations(self.treasureMap.annotations, animated: false)
+        
+        // loop through annotations
+        for anno in treasureMap.annotations {
+            // skip user location
+            if anno is MKUserLocation { continue }
+            
+            // get currentUser from app delegate
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+            // set annotation location in temporary CLLocation
+            let tempLoc : CLLocation = CLLocation(latitude: anno.coordinate.latitude, longitude: anno.coordinate.longitude)
+            
+            // if treasure exists in treasure focus skip iteration
+            for trea in appDelegate.treasureFocus {
+                if appDelegate.currentUser.foundTreasure.contains(trea.getIdentity()) {
+                    continue
+                } else {
+                    // if treasure coords match annotation
+                    if (trea.coordinate.longitude == anno.coordinate.longitude) &&
+                        (trea.coordinate.latitude == anno.coordinate.latitude)
+                    {
+                        // if user location is within 100 metres of treasure
+                        if (location?.distance(from: tempLoc))! < 100.0 {
+                            // change to UNLOCK CHEST IMAGE
+                            treasureMap.view(for: anno)?.image = UIImage(named: "tc-unlock-S")
+                        } else {
+                            // change to STANDARD CHEST IMAGE
+                            treasureMap.view(for: anno)?.image = UIImage(named: "tc-S")
+                        }
+                    }
+                }
+            }
+        }
     }
     
     // when map is fully rendered add route path for treasure
@@ -165,7 +198,7 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     // annotate treasure list handed to view controller
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let annotationId = "viewForAnnotation"
+        var annotationId = "viewForAnnotation"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationId)
         
         // check if annotations contain user location
@@ -194,15 +227,19 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         // if annotation is user location
         if annotation is MKUserLocation { return nil }  // leave untouched
         
+        /*
         if annotation.isEqual(mapView.userLocation) {
             let annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "userLocation")
             annotationView.image = UIImage(named: "geo")
             return annotationView
         }
+         */
         
         // if annotation is a user treasure
         if ((annotation as? Treasure) != nil) {
             if annotationView == nil {
+                let tempTreas : Treasure = annotation as! Treasure
+                annotationId = "tid\(tempTreas.getIdentity())"
                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationId)
                 annotationView?.image = (annotation as? Treasure)?.img
                 annotationView?.canShowCallout = true

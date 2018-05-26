@@ -69,6 +69,12 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // set sections in table view dependant on user count
     func numberOfSections(in tableView: UITableView) -> Int {
+        // get currentUser from app delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        if(user!.person == appDelegate.currentUser.person) {
+            return 1
+        }
         return userUnfoundFound.count
     }
     
@@ -114,25 +120,36 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         }
         
         // get treasure from index path of section and row
-        let treasure = userUnfoundFound[indexPath.section][indexPath.row]
+        var treasure = userUnfoundFound[0][indexPath.row]
+        if(user!.person != appDelegate.currentUser.person) {
+            treasure = userUnfoundFound[indexPath.section][indexPath.row]
+        }
         
         // set display image to treasure assigned image
         if indexPath.section == 1 {
             treasure.img = UIImage(named: "tc-open-S")!
         }
         
-        if appDelegate.currentUser.foundTreasure.contains(treasure.getIdentity()) {
+        if(user!.person != appDelegate.currentUser.person) {
+            if appDelegate.currentUser.foundTreasure.contains(treasure.getIdentity()) {
+                // set text label to treasure ????????
+                cell.textLabel?.text = treasure.content
+                
+                // set cell detail label to treasure ????????
+                cell.detailTextLabel?.text = treasure.content
+            } else {
+                // set text label to treasure content
+                cell.textLabel?.text = "? ? ?"
+                
+                // set cell detail label to treasure content
+                cell.detailTextLabel?.text = "? ? ?"
+            }
+        } else {
             // set text label to treasure ????????
             cell.textLabel?.text = treasure.content
             
             // set cell detail label to treasure ????????
             cell.detailTextLabel?.text = treasure.content
-        } else {
-            // set text label to treasure content
-            cell.textLabel?.text = "? ? ?"
-            
-            // set cell detail label to treasure content
-            cell.detailTextLabel?.text = "? ? ?"
         }
         
         // set cell image
