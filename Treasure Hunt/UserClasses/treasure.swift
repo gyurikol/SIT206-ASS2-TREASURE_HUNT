@@ -24,6 +24,8 @@ class Treasure: NSObject, MKAnnotation {
     var coordinate : CLLocationCoordinate2D = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     //Type - for content selection
     var content: String                         // test content as string first
+    var parent: User?
+    
     
     // Treasure initializer
     init( identifier: Int, Content : String, Location: CLLocationCoordinate2D )
@@ -36,8 +38,9 @@ class Treasure: NSObject, MKAnnotation {
         date = getDate()                        // set treasure date
         updateTripData()
     }
-    init( identifier: Int, Content : String, Destination: String )
+    init( parent: User, identifier: Int, Content : String, Destination: String )
     {
+        self.parent = parent
         content = Content                       // set paramerized content
         tID = identifier                        // set preknown id on construct
         super.init()                            // super init to be able to access class operators
