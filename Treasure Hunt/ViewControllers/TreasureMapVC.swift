@@ -283,9 +283,14 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             if !appDelegate.currentUser.foundTreasure.contains((tempTreasure?.getIdentity())!) {
                 appDelegate.currentUser.foundTreasure.append((tempTreasure?.getIdentity())!)
                 treasureMap.view(for: tempTreasure!)?.image = UIImage(named: "tc-open-S")
+                tempTreasure?.img = UIImage(named: "tc-open-S")!
                 let textDetail = UILabel()
                 textDetail.text = "Preview Treasure"
                 treasureMap.view(for: tempTreasure!)?.detailCalloutAccessoryView = textDetail
+                
+                // replace treasure focus with newly found treasure config
+                appDelegate.treasureFocus = []
+                appDelegate.treasureFocus.append(tempTreasure!)
             }
         }
         
@@ -298,15 +303,21 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         // Dispose of any resources that can be recreated.
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
+        if segue.destination is TreasureViewVC
+        {
+            // reference app delegate
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            
+            // to treasure resource view controller
+            let vc = segue.destination as? TreasureViewVC
+            vc?.treasurePreview = appDelegate.treasureFocus.first
+        }
     }
-    */
     
     // location manager error handling
     private func locationManager(_ manager: CLLocationManager, didFailWithError error: NSError) {
