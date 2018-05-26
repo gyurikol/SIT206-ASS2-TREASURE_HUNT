@@ -35,6 +35,7 @@
                     <connections>
                         <outlet property="buryTreasureButton" destination="Ugl-DK-pus" id="DMf-ku-V9A"/>
                         <outlet property="treasureMap" destination="W50-Xn-uVl" id="g4O-J2-qQY"/>
+                        <segue destination="L57-GK-pmi" kind="show" identifier="mapToViewTreasure" id="3R4-DY-Uuf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fFG-xg-zmw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -176,6 +177,21 @@
             </objects>
             <point key="canvasLocation" x="1352.8" y="-1105.0974512743628"/>
         </scene>
+        <!--Treasure ViewVC-->
+        <scene sceneID="99x-TO-P7x">
+            <objects>
+                <viewController id="L57-GK-pmi" customClass="TreasureViewVC" customModule="Treasure_Hunt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HYm-lt-iIF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="VOY-3h-bsg"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y3c-qr-pfd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2793" y="-932"/>
+        </scene>
         <!--ProfileVC-->
         <scene sceneID="5p0-Vh-Un7">
             <objects>
@@ -243,6 +259,7 @@
                         <outlet property="userSurname" destination="Fmc-yw-VZ0" id="EMO-hY-sX0"/>
                         <outlet property="userUsername" destination="RNP-at-swS" id="L3z-Hg-bzM"/>
                         <segue destination="rrt-3z-bjs" kind="show" identifier="treasureRouteSegue" id="Wy6-nM-Qa1"/>
+                        <segue destination="L57-GK-pmi" kind="show" identifier="profileToViewTreasure" id="AQD-2h-gzy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dHX-Jh-LKs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -293,6 +310,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vxc-rD-6oe"/>
-        <segue reference="DbH-vb-bxE"/>
+        <segue reference="3R4-DY-Uuf"/>
+        <segue reference="Wy6-nM-Qa1"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -20,6 +20,7 @@
 		3A5410DA20A5394F002D612D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3A5410D820A5394F002D612D /* LaunchScreen.storyboard */; };
 		3A5410E220A53E31002D612D /* TreasureMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5410E120A53E31002D612D /* TreasureMapVC.swift */; };
 		3A60F81620B5784400546EB9 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A60F81520B5784400546EB9 /* NavigationController.swift */; };
+		3A6A97D420B9CA3200E95BB7 /* TreasureViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6A97D320B9CA3200E95BB7 /* TreasureViewVC.swift */; };
 		3AC47E6120A57A2600F2FF93 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC47E6020A57A2600F2FF93 /* user.swift */; };
 		3AC47E6320A57A3800F2FF93 /* treasure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC47E6220A57A3800F2FF93 /* treasure.swift */; };
 		3AC47E6520A57D1500F2FF93 /* person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC47E6420A57D1500F2FF93 /* person.swift */; };
@@ -43,6 +44,7 @@
 		3A5410DB20A5394F002D612D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3A5410E120A53E31002D612D /* TreasureMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreasureMapVC.swift; sourceTree = "<group>"; };
 		3A60F81520B5784400546EB9 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		3A6A97D320B9CA3200E95BB7 /* TreasureViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreasureViewVC.swift; sourceTree = "<group>"; };
 		3AC47E6020A57A2600F2FF93 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
 		3AC47E6220A57A3800F2FF93 /* treasure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = treasure.swift; sourceTree = "<group>"; };
 		3AC47E6420A57D1500F2FF93 /* person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = person.swift; sourceTree = "<group>"; };
@@ -99,6 +101,7 @@
 				3A4AEB0120A573F800A940B6 /* FriendVC.swift */,
 				3A5410E120A53E31002D612D /* TreasureMapVC.swift */,
 				3A60F81520B5784400546EB9 /* NavigationController.swift */,
+				3A6A97D320B9CA3200E95BB7 /* TreasureViewVC.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 				3AF006AE20B724E300B69760 /* SKTAudio.swift in Sources */,
 				3A60F81620B5784400546EB9 /* NavigationController.swift in Sources */,
 				3A4AEB0620A574A000A940B6 /* SettingsVC.swift in Sources */,
+				3A6A97D420B9CA3200E95BB7 /* TreasureViewVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
