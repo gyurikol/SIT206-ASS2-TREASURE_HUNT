@@ -146,6 +146,8 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     // when map is fully rendered add route path for treasure
     func mapViewDidFinishRenderingMap(_ mapView: MKMapView, fullyRendered: Bool) {
+        // handle span size dependant on all annotations
+        self.treasureMap.showAnnotations(self.treasureMap.annotations, animated: false)
     }
     
     func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
