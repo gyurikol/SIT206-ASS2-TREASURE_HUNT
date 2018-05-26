@@ -189,8 +189,17 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         appDelegate.treasureFocus = []
         appDelegate.treasureFocus.append(userUnfoundFound[indexPath.section][indexPath.row])
         
-        // segue to treasure map
-        self.performSegue(withIdentifier: "treasureRouteSegue", sender: self)
+        // get treasure id
+        let tempTreasureID = appDelegate.treasureFocus.first?.getIdentity()
+        
+        // if treasure is found
+        if appDelegate.currentUser.foundTreasure.contains(tempTreasureID!) {
+            // skip straight to treasure resource viewer
+            self.performSegue(withIdentifier: "profileToViewTreasure", sender: self)
+        } else {
+            // otherwise go to map
+            self.performSegue(withIdentifier: "treasureRouteSegue", sender: self)
+        }
     }
 
     override func didReceiveMemoryWarning() {
