@@ -128,6 +128,10 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                         if (location?.distance(from: tempLoc))! < 100.0 {
                             // change to UNLOCK CHEST IMAGE
                             treasureMap.view(for: anno)?.image = UIImage(named: "tc-unlock-S")
+                            let textDetail = UILabel()
+                            textDetail.text = "Unlock"
+                            treasureMap.view(for: anno)?.detailCalloutAccessoryView = textDetail
+                            treasureMap.view(for: anno)?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
                         } else {
                             // change to STANDARD CHEST IMAGE
                             treasureMap.view(for: anno)?.image = UIImage(named: "tc-S")
@@ -198,7 +202,7 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     
     // annotate treasure list handed to view controller
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        var annotationId = "viewForAnnotation"
+        let annotationId = "viewForAnnotation"
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationId)
         
         // check if annotations contain user location
@@ -238,15 +242,24 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         // if annotation is a user treasure
         if ((annotation as? Treasure) != nil) {
             if annotationView == nil {
-                let tempTreas : Treasure = annotation as! Treasure
-                annotationId = "tid\(tempTreas.getIdentity())"
                 annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationId)
-                annotationView?.image = (annotation as? Treasure)?.img
                 annotationView?.canShowCallout = true
                 
-                // three functions for treasure selection
-                annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-                annotationView?.detailCalloutAccessoryView = UIButton(type: .detailDisclosure)
+                // get currentUser from app delegate
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                
+                let tempTreas : Treasure = annotation as! Treasure
+                
+                let textDetail = UILabel()
+                if appDelegate.currentUser.foundTreasure.contains(tempTreas.getIdentity()) {
+                    annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+                    textDetail.text = "Preview Treasure"
+                } else {
+                    textDetail.text = "Locked"
+                }
+                
+                annotationView?.image = (annotation as? Treasure)?.img
+                annotationView?.detailCalloutAccessoryView = textDetail
                 
             }
             else { annotationView?.annotation = annotation }

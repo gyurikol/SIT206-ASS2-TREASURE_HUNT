@@ -59,7 +59,7 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         // get found unfound treasures
         for tres in user!.treasures {
-            if appDelegate.currentUser.foundTreasure.contains(tres.getIdentity()) {
+            if appDelegate.currentUser.foundTreasure.contains(tres.getIdentity()) && (user!.person != appDelegate.currentUser.person){
                 userUnfoundFound[1].append(tres)
                 continue
             }

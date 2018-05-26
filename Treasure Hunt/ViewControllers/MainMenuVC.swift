@@ -97,6 +97,11 @@ class MainMenuVC: UIViewController {
             
             // set found treasure for user
             appDelegate.currentUser.foundTreasure = [5,10,15]
+            
+            // add current users treasures to found list
+            for treas in appDelegate.currentUser.treasures {
+                appDelegate.currentUser.foundTreasure.append(treas.getIdentity())
+            }
         }
     }
 
