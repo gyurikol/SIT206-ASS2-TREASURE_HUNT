@@ -116,25 +116,27 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             let tempLoc : CLLocation = CLLocation(latitude: anno.coordinate.latitude, longitude: anno.coordinate.longitude)
             
             // if treasure exists in treasure focus skip iteration
-            for trea in appDelegate.treasureFocus {
-                if appDelegate.currentUser.foundTreasure.contains(trea.getIdentity()) {
-                    continue
-                } else {
-                    // if treasure coords match annotation
-                    if (trea.coordinate.longitude == anno.coordinate.longitude) &&
-                        (trea.coordinate.latitude == anno.coordinate.latitude)
-                    {
-                        // if user location is within 100 metres of treasure
-                        if (location?.distance(from: tempLoc))! < 100.0 {
-                            // change to UNLOCK CHEST IMAGE
-                            treasureMap.view(for: anno)?.image = UIImage(named: "tc-unlock-S")
-                            let textDetail = UILabel()
-                            textDetail.text = "Unlock"
-                            treasureMap.view(for: anno)?.detailCalloutAccessoryView = textDetail
-                            treasureMap.view(for: anno)?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
-                        } else {
-                            // change to STANDARD CHEST IMAGE
-                            treasureMap.view(for: anno)?.image = UIImage(named: "tc-S")
+            for user in appDelegate.userAnnotationsFocus {
+                for trea in user.treasures {
+                    if appDelegate.currentUser.foundTreasure.contains(trea.getIdentity()) {
+                        continue
+                    } else {
+                        // if treasure coords match annotation
+                        if (trea.coordinate.longitude == anno.coordinate.longitude) &&
+                            (trea.coordinate.latitude == anno.coordinate.latitude)
+                        {
+                            // if user location is within 100 metres of treasure
+                            if (location?.distance(from: tempLoc))! < 100.0 {
+                                // change to UNLOCK CHEST IMAGE
+                                treasureMap.view(for: anno)?.image = UIImage(named: "tc-unlock-S")
+                                let textDetail = UILabel()
+                                textDetail.text = "Unlock"
+                                treasureMap.view(for: anno)?.detailCalloutAccessoryView = textDetail
+                                treasureMap.view(for: anno)?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+                            } else {
+                                // change to STANDARD CHEST IMAGE
+                                treasureMap.view(for: anno)?.image = UIImage(named: "tc-S")
+                            }
                         }
                     }
                 }
