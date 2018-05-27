@@ -18,6 +18,17 @@ class SettingsVC: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // reference app delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        if appDelegate.bgMusicPlaying == true {
+            bgMusicSwitch.isOn = true
+        } else {
+            bgMusicSwitch.isOn = false
+        }
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -26,12 +37,17 @@ class SettingsVC: UIViewController {
     
     // change background music state
     @IBAction func bgMusicState(_ sender: UISwitch) {
+        // reference app delegate
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
         if sender.isOn {
             // turn background music on
             SKTAudio.sharedInstance().playBackgroundMusic()
+            appDelegate.bgMusicPlaying = true
         } else {
             // turn background music off
             SKTAudio.sharedInstance().pauseBackgroundMusic()
+            appDelegate.bgMusicPlaying = false
         }
     }
     
