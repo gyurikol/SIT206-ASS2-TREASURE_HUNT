@@ -28,15 +28,15 @@ class Treasure: NSObject, MKAnnotation {
     
     
     // Treasure initializer
-    init( identifier: Int, Content : String, Location: CLLocationCoordinate2D )
+    init( parent: User, identifier: Int, Content : String, Location: CLLocationCoordinate2D )
     {
+        self.parent = parent
         content = Content                       // set paramerized content
         tID = identifier                        // set custom id on construct
         coordinate = Location                   // construct treasure with coordinate initializer
         super.init()                            // super init to be able to access class operators
         
         date = getDate()                        // set treasure date
-        updateTripData()
     }
     init( parent: User, identifier: Int, Content : String, Destination: String )
     {

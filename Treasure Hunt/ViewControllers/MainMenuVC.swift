@@ -92,7 +92,7 @@ class MainMenuVC: UIViewController {
             
             // add friends
             appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "a", UserName: "zOren", FirstName: "Zachery", Surname: "Orenstein", eMail: "zoren@test.com") ) )
-            appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "b", UserName: "poopmaster", FirstName: "Sherill", Surname: "Elia", eMail: "selia@test.com") ) )
+            appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "b", UserName: "sheralia", FirstName: "Sherill", Surname: "Elia", eMail: "selia@test.com") ) )
             appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "c", UserName: "leLOL", FirstName: "Hilario", Surname: "Legrand", eMail: "hlegrand@test.com") ) )
             
             // add friends treasures

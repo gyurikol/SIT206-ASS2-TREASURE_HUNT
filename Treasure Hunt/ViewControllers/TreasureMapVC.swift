@@ -77,7 +77,7 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         
         // location manager configuration
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestAlwaysAuthorization()
         
@@ -331,20 +331,55 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     // load alert with entries for buried treasure
     @IBAction func buryTreasure(_ sender: UIButton) {
         // create alert controller.
-        let alert = UIAlertController(title: "Bury Treasure Details", message: "Enter a text", preferredStyle: .alert)
+        let potentialTreasureLocation = treasureMap.userLocation.coordinate
+        let alert = UIAlertController(title: "Bury Treasure Details", message: "State the message you wish to leave", preferredStyle: .alert)
         
         // add entry for treasure content
         alert.addTextField { (textField) in
-            textField.text = "Some default text"
+            textField.text = ""
         }
         
         // add action to alert controller
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
             let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
-            print("Text field: \(textField?.text)")
+            
+            // if content exists in text field
+            if ((textField?.text?.count)! > 0) {
+                // get currentUser from app delegate
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                
+                // begin creating treasure
+                let newTreasure = Treasure(parent: appDelegate.currentUser, identifier: appDelegate.currentUser.getNextTid(), Content: (textField?.text)!, Location: potentialTreasureLocation)
+                
+                // add treasure to user
+                appDelegate.currentUser.treasures.append(newTreasure)
+                
+                // add current user annotations to map
+                for treasure in appDelegate.currentUser.treasures {
+                    self.treasureMap.addAnnotation( treasure )
+                }
+                
+                // present alert
+                self.treasureMap.showAnnotations(self.treasureMap.annotations, animated: true)
+            }
         }))
         
+        // add cancel action to alert controller
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: { [weak alert] (_) in }))
+        
+        // remove all other annotations apart from location
+        var allOtherAnnotations : [MKAnnotation] = []
+        for anno in treasureMap.annotations {
+            if anno is MKUserLocation {
+                continue
+            } else {
+                allOtherAnnotations.append(anno)
+            }
+        }
+        treasureMap.removeAnnotations(allOtherAnnotations)
+        
         // present alert
+        self.treasureMap.showAnnotations([self.treasureMap.userLocation], animated: true)
         self.present(alert, animated: true, completion: nil)
     }
     

@@ -21,4 +21,28 @@ class User {
     {
         self.person = details           // set person details
     }
+    
+    // function to get the next assignable treasure id
+    func getNextTid () -> Int {
+        // current max treasure id
+        var max : Int = -1
+        
+        // build list of treasures
+        var treasureList = treasures
+        for user in friends {
+            for friendTreasure in user.treasures {
+                treasureList.append(friendTreasure)
+            }
+        }
+        
+        // find max integer
+        for tres in treasureList {
+            if tres.getIdentity() > max {
+                max = tres.getIdentity()
+            }
+        }
+        
+        // return next treasure id
+        return (max + 1)
+    }
 }
