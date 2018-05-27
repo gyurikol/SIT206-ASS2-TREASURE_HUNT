@@ -328,6 +328,26 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
         }
     }
     
+    // load alert with entries for buried treasure
+    @IBAction func buryTreasure(_ sender: UIButton) {
+        // create alert controller.
+        let alert = UIAlertController(title: "Bury Treasure Details", message: "Enter a text", preferredStyle: .alert)
+        
+        // add entry for treasure content
+        alert.addTextField { (textField) in
+            textField.text = "Some default text"
+        }
+        
+        // add action to alert controller
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { [weak alert] (_) in
+            let textField = alert?.textFields![0] // Force unwrapping because we know it exists.
+            print("Text field: \(textField?.text)")
+        }))
+        
+        // present alert
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     // location manager error handling
     private func locationManager(_ manager: CLLocationManager, didFailWithError error: NSError) {
         var errorMessage : String = "Unhandled Error"

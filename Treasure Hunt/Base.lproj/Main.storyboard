@@ -26,6 +26,9 @@
                                 <rect key="frame" x="270" y="90" width="75" height="75"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" image="bury-treasure"/>
+                                <connections>
+                                    <action selector="buryTreasure:" destination="rrt-3z-bjs" eventType="touchUpInside" id="66x-dd-ISz"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -344,7 +347,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vxc-rD-6oe"/>
-        <segue reference="AQD-2h-gzy"/>
+        <segue reference="3R4-DY-Uuf"/>
         <segue reference="DbH-vb-bxE"/>
     </inferredMetricsTieBreakers>
 </document>
