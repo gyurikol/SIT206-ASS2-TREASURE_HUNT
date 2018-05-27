@@ -349,6 +349,7 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                 let appDelegate = UIApplication.shared.delegate as! AppDelegate
                 
                 // begin creating treasure
+                let nextTid = appDelegate.currentUser.getNextTid()
                 let newTreasure = Treasure(parent: appDelegate.currentUser, identifier: appDelegate.currentUser.getNextTid(), Content: (textField?.text)!, Location: potentialTreasureLocation)
                 
                 // add treasure to user
@@ -358,6 +359,9 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                 for treasure in appDelegate.currentUser.treasures {
                     self.treasureMap.addAnnotation( treasure )
                 }
+                
+                // add treasure to found treasure list
+                appDelegate.currentUser.foundTreasure.append(nextTid)
                 
                 // present alert
                 self.treasureMap.showAnnotations(self.treasureMap.annotations, animated: true)
