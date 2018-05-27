@@ -23,6 +23,8 @@ class MainMenuVC: UIViewController {
         
         // start background music
         SKTAudio.sharedInstance().playBackgroundMusic()
+        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "scroll-texture")!)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -43,7 +45,7 @@ class MainMenuVC: UIViewController {
         let buttonFormatList = [friendsButton,yourTreasuresButton,settingsButton]
         
         for but in buttonFormatList {
-            but?.backgroundColor = .clear
+            but?.backgroundColor = UIColor.white
             but?.layer.cornerRadius = (but?.frame.height)!/2
             but?.layer.borderWidth = 1
             but?.layer.borderColor = UIColor.black.cgColor

@@ -25,6 +25,7 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     var userUnfoundFound : [[Treasure]] = [[],[]]
     
     override func viewWillAppear(_ animated: Bool) {
+        
         // deselect selected cell
         if let index = treasureView.indexPathForSelectedRow{
             treasureView.deselectRow(at: index, animated: false)
@@ -35,6 +36,9 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
         
         // reference app delegate
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        
+        // clear treasure focus
+        appDelegate.treasureFocus = []
         
         // for the assurance of reappearance post found treasure after segue
         // get found unfound treasures
@@ -52,7 +56,10 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "scroll-texture")!)
+        treasureView.backgroundColor = .clear
+        
         // Do any additional setup after loading the view.
         treasureView.dataSource = self
         treasureView.delegate = self
@@ -124,6 +131,7 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // get next usable cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "treasureCell", for: indexPath)
+        cell.backgroundView?.alpha = 0.5
         
         // get currentUser from app delegate
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

@@ -18,6 +18,9 @@ class FriendVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "scroll-texture")!)
+        friendTable.backgroundColor = .clear
 
         // set friend table
         friendTable.delegate = self

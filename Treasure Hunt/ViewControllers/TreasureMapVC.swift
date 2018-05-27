@@ -23,6 +23,8 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "scroll-texture")!)
+        
         // ViewController is the delegate of the MKMapViewDelegate protocol
         treasureMap.delegate = self
         

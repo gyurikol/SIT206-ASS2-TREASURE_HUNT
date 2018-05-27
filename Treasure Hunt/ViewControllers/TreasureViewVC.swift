@@ -21,6 +21,9 @@ class TreasureViewVC: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = UIColor(patternImage: UIImage(named: "scroll-texture")!)
+        treasureContentView.backgroundColor = .clear
 
         // Do any additional setup after loading the view.
         
@@ -59,6 +62,7 @@ class TreasureViewVC: UIViewController, MKMapViewDelegate, CLLocationManagerDele
             
             // create label and add content to content viewer
             let inputText = UITextView(frame: CGRect(x: 0.0, y: 0.0, width: treasureContentView.frame.width, height: treasureContentView.frame.height))
+            inputText.backgroundColor = .clear
             inputText.text = treasurePreview?.content
             inputText.font = UIFont.systemFont(ofSize: 25)
             treasureContentView.addSubview(inputText)

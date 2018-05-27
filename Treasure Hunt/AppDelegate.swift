@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var currentUser = User(
         details: PersonDetails(
             UserID: "1",
-            UserName: "tester",
+            UserName: "creator",
             FirstName: "Gyuri",
             Surname: "Kolecsanyi",
             eMail:"gkolecs@deakin.edu.au"
