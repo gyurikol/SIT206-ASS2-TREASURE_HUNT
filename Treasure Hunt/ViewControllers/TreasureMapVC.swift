@@ -131,8 +131,11 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                                 treasureMap.view(for: anno)?.image = UIImage(named: "tc-unlock-S")
                                 let textDetail = UILabel()
                                 textDetail.text = "Unlock?"
+                                let gotoButton = UIButton(type: UIButtonType.custom)
+                                gotoButton.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+                                gotoButton.setImage(UIImage(named: "goto"), for: .normal)
                                 treasureMap.view(for: anno)?.detailCalloutAccessoryView = textDetail
-                                treasureMap.view(for: anno)?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+                                treasureMap.view(for: anno)?.rightCalloutAccessoryView = gotoButton
                             } else {
                                 // change to STANDARD CHEST IMAGE
                                 treasureMap.view(for: anno)?.image = UIImage(named: "tc-S")
@@ -256,7 +259,10 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                 
                 let textDetail = UILabel()
                 if appDelegate.currentUser.foundTreasure.contains(tempTreas.getIdentity()) {
-                    annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
+                    let gotoButton = UIButton(type: UIButtonType.custom)
+                    gotoButton.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+                    gotoButton.setImage(UIImage(named: "goto"), for: .normal)
+                    annotationView?.rightCalloutAccessoryView = gotoButton
                     textDetail.text = "Preview Treasure"
                 } else {
                     let fullName = (tempTreas.parent?.person.firstname)! + " " + (tempTreas.parent?.person.surname)!
@@ -290,11 +296,11 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                 let textDetail = UILabel()
                 textDetail.text = "Preview Treasure"
                 treasureMap.view(for: tempTreasure!)?.detailCalloutAccessoryView = textDetail
-                
-                // replace treasure focus with newly found treasure config
-                appDelegate.treasureFocus = []
-                appDelegate.treasureFocus.append(tempTreasure!)
             }
+            
+            // replace treasure focus with newly found treasure config
+            appDelegate.treasureFocus = []
+            appDelegate.treasureFocus.append(tempTreasure!)
         }
         
         // segue to treasure view ViewController

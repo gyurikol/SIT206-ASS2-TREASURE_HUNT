@@ -75,29 +75,22 @@
                                     <segue destination="rrt-3z-bjs" kind="show" id="DbH-vb-bxE"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9hG-wn-YoB">
-                                <rect key="frame" x="16" y="342" width="343" height="37"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9hG-wn-YoB">
+                                <rect key="frame" x="115" y="313" width="145" height="75"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                <state key="normal" title="Friends"/>
+                                <state key="normal" title="  Friends" image="friends">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="0uI-SF-BLq" kind="show" id="dbA-5r-gfo"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pcv-ya-PBJ">
-                                <rect key="frame" x="16" y="397" width="343" height="37"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gBR-SY-LpV">
+                                <rect key="frame" x="118" y="527" width="142" height="75"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                <state key="normal" title="Your Treasure"/>
-                                <connections>
-                                    <segue destination="Fm8-pH-MAj" kind="show" id="vxc-rD-6oe"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gBR-SY-LpV">
-                                <rect key="frame" x="16" y="457" width="343" height="37"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
-                                <state key="normal" title="Settings"/>
+                                <state key="normal" title="Settings" image="settings">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
                                 <connections>
                                     <segue destination="QrY-iy-ecA" kind="show" id="yMi-DH-Sgh"/>
                                 </connections>
@@ -106,12 +99,27 @@
                                 <rect key="frame" x="16" y="97" width="343" height="208"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pcv-ya-PBJ">
+                                <rect key="frame" x="91" y="417" width="196" height="75"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <state key="normal" title="Your Treasures" image="your-treasures">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Fm8-pH-MAj" kind="show" id="vxc-rD-6oe"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="O2V-HC-pPv"/>
                     <navigationItem key="navigationItem" id="Lf1-Ly-HRj"/>
+                    <connections>
+                        <outlet property="friendsButton" destination="9hG-wn-YoB" id="l67-MI-kCP"/>
+                        <outlet property="settingsButton" destination="gBR-SY-LpV" id="Z8r-cc-FQF"/>
+                        <outlet property="yourTreasuresButton" destination="Pcv-ya-PBJ" id="FA4-FJ-QT8"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -326,14 +334,17 @@
     </scenes>
     <resources>
         <image name="bury-treasure" width="75" height="75"/>
+        <image name="friends" width="75" height="75"/>
         <image name="menu-25" width="25" height="25"/>
+        <image name="settings" width="75" height="75"/>
         <image name="title" width="210" height="120"/>
         <image name="tm-25" width="25" height="25"/>
         <image name="tm-75" width="75" height="75"/>
+        <image name="your-treasures" width="75" height="75"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="vxc-rD-6oe"/>
         <segue reference="AQD-2h-gzy"/>
-        <segue reference="Wy6-nM-Qa1"/>
+        <segue reference="DbH-vb-bxE"/>
     </inferredMetricsTieBreakers>
 </document>

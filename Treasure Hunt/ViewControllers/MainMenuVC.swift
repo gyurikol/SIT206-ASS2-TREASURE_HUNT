@@ -10,6 +10,13 @@ import UIKit
 
 class MainMenuVC: UIViewController {
     
+    // outlets
+    @IBOutlet weak var friendsButton: UIButton!
+    @IBOutlet weak var yourTreasuresButton: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
+    var buttonFormatList : [UIButton]?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -32,6 +39,15 @@ class MainMenuVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         // load test data into application
         loadTestData()
+        
+        let buttonFormatList = [friendsButton,yourTreasuresButton,settingsButton]
+        
+        for but in buttonFormatList {
+            but?.backgroundColor = .clear
+            but?.layer.cornerRadius = (but?.frame.height)!/2
+            but?.layer.borderWidth = 1
+            but?.layer.borderColor = UIColor.black.cgColor
+        }
     }
 
     override func didReceiveMemoryWarning() {
