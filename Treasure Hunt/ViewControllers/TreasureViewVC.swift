@@ -52,7 +52,9 @@ class TreasureViewVC: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        treasureMapView.addAnnotation( treasurePreview! )
+        if treasurePreview != nil {
+            treasureMapView.addAnnotation( treasurePreview! )
+        }
         
         nameLabel.text = (treasurePreview?.parent?.person.firstname)! + " " + (treasurePreview?.parent?.person.surname)!
         
