@@ -54,15 +54,15 @@ class TreasureViewVC: UIViewController, MKMapViewDelegate, CLLocationManagerDele
     override func viewWillAppear(_ animated: Bool) {
         if treasurePreview != nil {
             treasureMapView.addAnnotation( treasurePreview! )
+        
+            nameLabel.text = (treasurePreview?.parent?.person.firstname)! + " " + (treasurePreview?.parent?.person.surname)!
+            
+            // create label and add content to content viewer
+            let inputText = UITextView(frame: CGRect(x: 0.0, y: 0.0, width: treasureContentView.frame.width, height: treasureContentView.frame.height))
+            inputText.text = treasurePreview?.content
+            inputText.font = UIFont.systemFont(ofSize: 25)
+            treasureContentView.addSubview(inputText)
         }
-        
-        nameLabel.text = (treasurePreview?.parent?.person.firstname)! + " " + (treasurePreview?.parent?.person.surname)!
-        
-        // create label and add content to content viewer
-        let inputText = UITextView(frame: CGRect(x: 0.0, y: 0.0, width: treasureContentView.frame.width, height: treasureContentView.frame.height))
-        inputText.text = treasurePreview?.content
-        inputText.font = UIFont.systemFont(ofSize: 25)
-        treasureContentView.addSubview(inputText)
     }
 
     override func didReceiveMemoryWarning() {
