@@ -241,7 +241,7 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
             annotationView.image = UIImage(named: "geo")
             return annotationView
         }
-         */
+        */
         
         // if annotation is a user treasure
         if ((annotation as? Treasure) != nil) {
