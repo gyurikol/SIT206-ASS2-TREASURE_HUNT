@@ -84,6 +84,8 @@ class MainMenuVC: UIViewController {
         if !(appDelegate.currentUser.friends.count > 0) {
             // TESTING - Add Custom Default User for startup
             
+            appDelegate.currentUser.person.userImage = UIImage(named: "me")
+            
             // add current user treasure
             appDelegate.currentUser.treasures.append( Treasure( parent: appDelegate.currentUser, identifier: 0, Content: "They offered her a ride home.", Destination: "Southbank Melbourne" ) )
             appDelegate.currentUser.treasures.append( Treasure( parent: appDelegate.currentUser, identifier: 1, Content: "Peter showed them a photograph.", Destination: "Richmond Melbourne" ) )
@@ -92,8 +94,11 @@ class MainMenuVC: UIViewController {
             
             // add friends
             appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "a", UserName: "zOren", FirstName: "Zachery", Surname: "Orenstein", eMail: "zoren@test.com") ) )
+            appDelegate.currentUser.friends.last?.person.userImage = UIImage(named: "zach")
             appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "b", UserName: "sheralia", FirstName: "Sherill", Surname: "Elia", eMail: "selia@test.com") ) )
+            appDelegate.currentUser.friends.last?.person.userImage = UIImage(named: "sher")
             appDelegate.currentUser.friends.append( User(details: PersonDetails(UserID: "c", UserName: "leLOL", FirstName: "Hilario", Surname: "Legrand", eMail: "hlegrand@test.com") ) )
+            appDelegate.currentUser.friends.last?.person.userImage = UIImage(named: "hila")
             
             // add friends treasures
             appDelegate.currentUser.friends[0].treasures.append( Treasure( parent: appDelegate.currentUser.friends[0], identifier: 4, Content: "Those cashiers lend him the bicycle.", Destination: "Brunswick East" ) )

@@ -19,11 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         details: PersonDetails(
             UserID: "1",
             UserName: "tester",
-            FirstName: "John",
-            Surname: "Smith",
-            eMail:"test@test.com"
+            FirstName: "Gyuri",
+            Surname: "Kolecsanyi",
+            eMail:"gkolecs@deakin.edu.au"
         )
     )
+    
     var userAnnotationsFocus : [User] = []
     var treasureFocus : [Treasure] = []
     var bgMusicPlaying = true

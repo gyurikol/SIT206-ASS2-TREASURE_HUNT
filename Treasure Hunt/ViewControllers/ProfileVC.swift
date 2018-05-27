@@ -116,7 +116,7 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
             if section == 1 {
                 return "Found Treasures"
             }
-            return "\(user!.person.username) Treasures"
+            return "\(user!.person.username)'s Treasures"
         }
     }
     
