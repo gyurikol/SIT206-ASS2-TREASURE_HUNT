@@ -259,7 +259,8 @@ class TreasureMapVC: UIViewController, MKMapViewDelegate, CLLocationManagerDeleg
                     annotationView?.rightCalloutAccessoryView = UIButton(type: .detailDisclosure)
                     textDetail.text = "Preview Treasure"
                 } else {
-                    textDetail.text = "Locked"
+                    let fullName = (tempTreas.parent?.person.firstname)! + " " + (tempTreas.parent?.person.surname)!
+                    textDetail.text = "\(fullName)"
                 }
                 
                 annotationView?.image = (annotation as? Treasure)?.img
