@@ -27,12 +27,38 @@ import AVFoundation
  * short sound effects. For when using SKActions just isn't good enough.
  */
 public class SKTAudio {
+  // set theme song
+  public let themeSong = "song/pirate.mp3" // address to theme song music
+    
   public var backgroundMusicPlayer: AVAudioPlayer?
   public var soundEffectPlayer: AVAudioPlayer?
 
   public class func sharedInstance() -> SKTAudio {
     return SKTAudioInstance
   }
+    
+    public func playBackgroundMusic() {
+        let url = Bundle.main.url(forResource: themeSong, withExtension: nil)
+        if (url == nil) {
+            print("Could not find file: \(themeSong)")
+            return
+        }
+        
+        var error: NSError? = nil
+        do {
+            backgroundMusicPlayer = try AVAudioPlayer(contentsOf: url!)
+        } catch let error1 as NSError {
+            error = error1
+            backgroundMusicPlayer = nil
+        }
+        if let player = backgroundMusicPlayer {
+            player.numberOfLoops = -1
+            player.prepareToPlay()
+            player.play()
+        } else {
+            print("Could not create audio player: \(error!)")
+        }
+    }
 
   public func playBackgroundMusic(_ filename: String) {
     let url = Bundle.main.url(forResource: filename, withExtension: nil)
