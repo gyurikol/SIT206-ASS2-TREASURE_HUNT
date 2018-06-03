@@ -21,10 +21,10 @@
 		3A5410E220A53E31002D612D /* TreasureMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A5410E120A53E31002D612D /* TreasureMapVC.swift */; };
 		3A60F81620B5784400546EB9 /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A60F81520B5784400546EB9 /* NavigationController.swift */; };
 		3A6A97D420B9CA3200E95BB7 /* TreasureViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A6A97D320B9CA3200E95BB7 /* TreasureViewVC.swift */; };
+		3A99B50920C40C6300EE22E4 /* SKTAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A99B50820C40C6300EE22E4 /* SKTAudio.swift */; };
 		3AC47E6120A57A2600F2FF93 /* user.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC47E6020A57A2600F2FF93 /* user.swift */; };
 		3AC47E6320A57A3800F2FF93 /* treasure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC47E6220A57A3800F2FF93 /* treasure.swift */; };
 		3AC47E6520A57D1500F2FF93 /* person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AC47E6420A57D1500F2FF93 /* person.swift */; };
-		3AF006AE20B724E300B69760 /* SKTAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AF006AD20B724E300B69760 /* SKTAudio.swift */; };
 		3AF006B220B7270C00B69760 /* pirate.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 3AF006B120B7270C00B69760 /* pirate.mp3 */; };
 /* End PBXBuildFile section */
 
@@ -45,10 +45,10 @@
 		3A5410E120A53E31002D612D /* TreasureMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreasureMapVC.swift; sourceTree = "<group>"; };
 		3A60F81520B5784400546EB9 /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		3A6A97D320B9CA3200E95BB7 /* TreasureViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreasureViewVC.swift; sourceTree = "<group>"; };
+		3A99B50820C40C6300EE22E4 /* SKTAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SKTAudio.swift; sourceTree = "<group>"; };
 		3AC47E6020A57A2600F2FF93 /* user.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = user.swift; sourceTree = "<group>"; };
 		3AC47E6220A57A3800F2FF93 /* treasure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = treasure.swift; sourceTree = "<group>"; };
 		3AC47E6420A57D1500F2FF93 /* person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = person.swift; sourceTree = "<group>"; };
-		3AF006AD20B724E300B69760 /* SKTAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SKTAudio.swift; path = ../../../../../../Desktop/tc/SKTAudio.swift; sourceTree = "<group>"; };
 		3AF006B120B7270C00B69760 /* pirate.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pirate.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -129,8 +129,8 @@
 				3AF006AA20B7247500B69760 /* MenuMusic */,
 				3A4AEB0820A5775E00A940B6 /* ViewControllers */,
 				3A4AEB0720A5772800A940B6 /* UserClasses */,
-				3AF006AD20B724E300B69760 /* SKTAudio.swift */,
 				3A5410CC20A5394D002D612D /* AppDelegate.swift */,
+				3A99B50820C40C6300EE22E4 /* SKTAudio.swift */,
 				3A5410D020A5394D002D612D /* Main.storyboard */,
 				3A5410D620A5394F002D612D /* Assets.xcassets */,
 				3A5410D820A5394F002D612D /* LaunchScreen.storyboard */,
@@ -229,12 +229,12 @@
 				3A4AEB0220A573F800A940B6 /* FriendVC.swift in Sources */,
 				3A5410D520A5394D002D612D /* Treasure_Hunt.xcdatamodeld in Sources */,
 				3A5410CF20A5394D002D612D /* MainMenuVC.swift in Sources */,
+				3A99B50920C40C6300EE22E4 /* SKTAudio.swift in Sources */,
 				3AC47E6320A57A3800F2FF93 /* treasure.swift in Sources */,
 				3AC47E6120A57A2600F2FF93 /* user.swift in Sources */,
 				3AC47E6520A57D1500F2FF93 /* person.swift in Sources */,
 				3A5410CD20A5394D002D612D /* AppDelegate.swift in Sources */,
 				3A4AEB0420A5744F00A940B6 /* ProfileVC.swift in Sources */,
-				3AF006AE20B724E300B69760 /* SKTAudio.swift in Sources */,
 				3A60F81620B5784400546EB9 /* NavigationController.swift in Sources */,
 				3A4AEB0620A574A000A940B6 /* SettingsVC.swift in Sources */,
 				3A6A97D420B9CA3200E95BB7 /* TreasureViewVC.swift in Sources */,

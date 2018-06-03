@@ -131,7 +131,6 @@ class ProfileVC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // get next usable cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "treasureCell", for: indexPath)
-        cell.backgroundView?.alpha = 0.5
         
         // get currentUser from app delegate
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
