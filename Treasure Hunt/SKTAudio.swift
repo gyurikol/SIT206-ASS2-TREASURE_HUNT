@@ -28,7 +28,7 @@ import AVFoundation
  */
 public class SKTAudio {
   // set theme song
-  public let themeSong = "song/pirate.mp3" // address to theme song music
+  public let themeSong = "pirate.mp3" // address to theme song music
     
   public var backgroundMusicPlayer: AVAudioPlayer?
   public var soundEffectPlayer: AVAudioPlayer?
